@@ -16,8 +16,8 @@
 
 .stats-tag {
   display: inline-block;
-  background-color: #1d4ed8; /* blue */
-  color: white;
+  background-color: #c8e6c9; /* blue */
+  color: #4f4d4d;
   padding: 0.25rem 1rem;
   font-size: 0.875rem;
   border-radius: 9999px;
@@ -53,7 +53,7 @@
 }
 
 .stats-item {
-  background-color: #1d4ed8; /* blue background */
+  background-color: #c8e6c9;
   padding: 2rem 1rem;
   border-radius: 0.5rem;
 }
@@ -61,11 +61,11 @@
 .stats-number {
   font-size: 2rem;
   font-weight: bold;
-  color: white;
+  color: #232121;
 }
 
 .stats-label {
   margin-top: 0.5rem;
   font-size: 1rem;
-  color: white;
+  color: rgb(51, 47, 47);
 }

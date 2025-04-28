@@ -17,19 +17,31 @@ const Hero = () => {
             viewport={{ once: true }}
           >
             <h1 className="hero-heading">
-              <span className="hero-heading-main">For Someone</span>
-              <span className="hero-heading-sub">Your Smallest Gift...</span>
-              <span className="hero-heading-sub">is Everything</span>
+              <span className="hero-heading-main">
+                Together, We Make Good Things Happen.
+              </span>
             </h1>
 
             <p className="hero-description">
-              Enable an on-page thermometer also optimized for full-screen live
-              display at your in-person and virtual events. Multiple payment
-              options, including digital wallets like Apple Pay, Google Pay,
-              PayPal, and Venmo.
+              Join a community committed to making a real difference. Our
+              platform connects donors, volunteers, and projects that need
+              support — creating an impact that transforms lives. Whether you’re
+              giving, sharing, or participating, every action you take helps
+              build a brighter, more hopeful future for communities around the
+              world.
+            </p>
+            <p className="tagline">Small Actions, Big Changes.</p>
+            <p className="hero-description">
+              Your donation plants seeds of hope. Together, we fund projects,
+              empower communities, and change lives. Be a part of a movement
+              where every contribution brings light to someone’s path.
             </p>
 
-            <Link to="/donate" className="hero-button">
+            <Link
+              to="https://www.paypal.com/donate/?hosted_button_id=RHUEZP5CSVBGS"
+              className="hero-button"
+              target="_blank"
+            >
               Donate Now
             </Link>
           </motion.div>

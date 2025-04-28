@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // 🧡 Animation library
-import recentDonation from "../assets/recent-donations.png";
+import recentDonation from "../assets/personal-donate-stat.png";
+import PayPalButton from "./PayPalButton";
 
 type Donation = {
   id: string;
@@ -63,22 +64,16 @@ const DonationFeed = () => {
 
               <ul className="donation-items">
                 {donations.map((donation) => (
-                  <motion.li
-                    key={donation.id}
-                    className="donation-item"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.5 }}
-                  >
+                  <li key={donation.id} className="donation-item">
                     <div className="donation-info">
                       <p className="donor-name">{donation.donor}</p>
                       <p className="donation-date">{donation.date}</p>
                     </div>
                     <div className="donation-amount">${donation.amount}</div>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
+              <PayPalButton />
 
               <motion.button
                 className="donation-button"

@@ -1,0 +1,68 @@
+/* Success Page Styles */
+.success-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f9fafb;
+}
+
+.success-content {
+  text-align: center;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
+  width: 100%;
+}
+
+.success-title {
+  font-size: 2rem;
+  color: #16a34a;
+  margin-bottom: 1rem;
+}
+
+.success-message {
+  font-size: 1rem;
+  color: #374151;
+  margin-bottom: 1rem;
+}
+
+.success-redirect {
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.success-button {
+  margin-top: 2rem;
+  background-color: #16a34a;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.success-button:hover {
+  background-color: #15803d;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .success-content {
+    padding: 1.5rem;
+  }
+
+  .success-title {
+    font-size: 1.5rem;
+  }
+
+  .success-button {
+    width: 100%;
+  }
+}

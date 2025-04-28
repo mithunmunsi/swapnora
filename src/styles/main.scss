@@ -14,6 +14,7 @@
 @import "components/donationfeed";
 @import "components/footer";
 @import "components/header";
+@import "components/paypalbutton";
 
 @import "layout/grid";
 
@@ -26,7 +27,11 @@
 @import "sections/newsletter";
 
 @import "pages/admin";
+@import "pages/chat";
+@import "pages/cancel";
 @import "pages/donate";
 @import "pages/home";
 @import "pages/login";
 @import "pages/register";
+@import "pages/success";
+@import "pages/vote";

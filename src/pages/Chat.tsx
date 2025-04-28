@@ -31,50 +31,47 @@ const Chat = () => {
   }, [messages]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 flex flex-col items-center">
-      <div className="bg-white shadow-lg rounded-lg w-full max-w-3xl flex flex-col h-[80vh]">
-        <header className="bg-indigo-600 text-white p-4 rounded-t-lg text-xl font-semibold">
-          🗨️ Live Community Chat
-        </header>
+    <section className="chat">
+      <div className="chat-container">
+        <header className="chat-header">🗨️ Live Community Chat</header>
 
-        <div className="flex-1 p-4 overflow-y-auto space-y-3">
+        <main className="chat-messages">
           {messages.map((msg, idx) => (
-            <div
+            <article
               key={idx}
-              className={`p-2 rounded ${
+              className={`chat-message ${
                 msg.sender === userName
-                  ? "bg-blue-100 self-end text-right"
-                  : "bg-gray-200 self-start"
+                  ? "chat-message--own"
+                  : "chat-message--other"
               }`}
             >
-              <div className="text-sm text-gray-700 font-medium">
-                {msg.sender}
-              </div>
-              <div>{msg.text}</div>
-              <div className="text-xs text-gray-500">{msg.timestamp}</div>
-            </div>
+              <div className="chat-message-sender">{msg.sender}</div>
+              <div className="chat-message-text">{msg.text}</div>
+              <div className="chat-message-time">{msg.timestamp}</div>
+            </article>
           ))}
           <div ref={messagesEndRef} />
-        </div>
+        </main>
 
-        <footer className="p-4 border-t flex gap-2">
+        <footer className="chat-footer">
           <input
             type="text"
-            className="flex-1 px-4 py-2 border rounded"
+            className="chat-input"
             placeholder="Type your message..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSend()}
           />
           <button
+            type="button"
+            className="chat-send-button"
             onClick={handleSend}
-            className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
           >
             Send
           </button>
         </footer>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -47,57 +47,46 @@ const Vote = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 flex flex-col items-center">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        🗳️ Vote for the Next Social Project
-      </h1>
-      <p className="text-gray-600 mb-8 text-center max-w-2xl">
-        Cast your vote to decide which project our community should support
-        next. The project with the most votes will be selected for funding and
-        execution.
-      </p>
+    <section className="vote-section">
+      <header className="vote-header">
+        <h1 className="vote-title">🗳️ Vote for the Next Social Project</h1>
+        <p className="vote-description">
+          Cast your vote to decide which project our community should support
+          next. The project with the most votes will be selected for funding and
+          execution.
+        </p>
+      </header>
 
-      <div className="grid gap-6 w-full max-w-4xl">
+      <div className="projects-list">
         {projects.map((project) => (
-          <div
-            key={project.id}
-            className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-all"
-          >
-            <div className="flex justify-between items-center">
-              <h2 className="text-xl font-semibold text-indigo-700">
-                {project.title}
-              </h2>
-              <span className="text-sm text-gray-500">
-                {project.votes} vote(s)
-              </span>
-            </div>
-            <p className="text-gray-600 mt-2">{project.description}</p>
+          <article key={project.id} className="project-card">
+            <header className="project-header">
+              <h2 className="project-title">{project.title}</h2>
+              <span className="project-votes">{project.votes} vote(s)</span>
+            </header>
+            <p className="project-description">{project.description}</p>
             <button
-              className={`mt-4 px-4 py-2 rounded ${
-                votedProjectId === project.id
-                  ? "bg-green-500 text-white cursor-default"
-                  : votedProjectId
-                  ? "bg-gray-300 text-white cursor-not-allowed"
-                  : "bg-indigo-600 hover:bg-indigo-700 text-white"
+              className={`vote-button ${
+                votedProjectId === project.id ? "voted" : ""
               }`}
               onClick={() => handleVote(project.id)}
               disabled={!!votedProjectId}
             >
               {votedProjectId === project.id ? "Voted" : "Vote"}
             </button>
-          </div>
+          </article>
         ))}
       </div>
 
       {votedProjectId && (
-        <div className="mt-6 text-green-600 font-medium">
+        <div className="thank-you-message">
           ✅ Thank you for voting! You selected:{" "}
           <strong>
             {projects.find((p) => p.id === votedProjectId)?.title}
           </strong>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

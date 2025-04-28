@@ -8,6 +8,7 @@ import UserLayout from "../layouts/UserLayout";
 import AdminProjects from "../pages/admin/AdminProjects";
 import AdminUsers from "../pages/admin/AdminUsers";
 import AdminSettings from "../pages/admin/AdminSettings";
+import Success from "../pages/Success";
 
 // Lazy load pages/components
 const AdminDashboard = lazy(() => import("../pages/admin/AdminDashboard"));
@@ -20,6 +21,7 @@ const Vote = lazy(() => import("../pages/Vote"));
 const Chat = lazy(() => import("../pages/Chat"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
+const Cancel = lazy(() => import("../pages/Cancel"));
 const DonationFeed = lazy(() => import("../components/DonationFeed"));
 const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
 
@@ -35,6 +37,10 @@ const AppRoutes = () => {
         <Route path="/chat" element={<Chat />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* other routes */}
+        <Route path="/cancel" element={<Cancel />} />
+        <Route path="/success" element={<Success />} />
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>

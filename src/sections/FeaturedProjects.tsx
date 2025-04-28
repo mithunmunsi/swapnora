@@ -7,21 +7,21 @@ import Profile2 from "../assets/woman.png";
 
 const featuredData = [
   {
-    href: "/donate",
+    href: "https://www.paypal.com/donate/?hosted_button_id=RHUEZP5CSVBGS",
     imgSrc: FeatureImg3,
     alt: "Providing clean drinking water in rural areas.",
     title: "Clean Water Initiative",
     desc: "Providing clean drinking water in rural areas.",
   },
   {
-    href: "/donate",
+    href: "https://www.paypal.com/donate/?hosted_button_id=RHUEZP5CSVBGS",
     imgSrc: FeatureImg2,
     alt: "Helping children with essential school materials.",
     title: "School Supplies Drive",
     desc: "Helping children with essential school materials.",
   },
   {
-    href: "/donate",
+    href: "https://www.paypal.com/donate/?hosted_button_id=RHUEZP5CSVBGS",
     imgSrc: FeatureImg1,
     alt: "Organizing free medical checkups in remote villages.",
     title: "Health Camp",
@@ -94,7 +94,7 @@ const FeaturedProjects = () => {
                   </div>
 
                   <div className="donate-button-container">
-                    <a href={item.href} className="donate-link">
+                    <a href={item.href} target="_blank" className="donate-link">
                       Donate
                     </a>
                   </div>

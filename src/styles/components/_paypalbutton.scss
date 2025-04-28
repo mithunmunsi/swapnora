@@ -1,0 +1,35 @@
+.PayPal {
+  margin: 0 auto;
+  width: 190px;
+}
+.paypal-submit-button {
+  text-align: center;
+  border: none;
+  border-radius: 0.25rem;
+  min-width: 11.625rem;
+  padding: 0 2rem;
+  height: 2.625rem;
+  font-weight: bold;
+  background-color: #ffd140;
+  color: #000000;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+}
+
+.paypal-form {
+  display: inline-grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.5rem;
+}
+
+.paypal-powered {
+  font-size: 0.75rem;
+}
+
+.paypal-logo {
+  height: 0.875rem;
+  vertical-align: middle;
+}

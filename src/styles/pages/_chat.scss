@@ -1,0 +1,130 @@
+/* Chat Layout */
+.chat {
+  min-height: 100vh;
+  background-color: #f3f4f6; /* light gray */
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-container {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+}
+
+/* Chat Header */
+.chat-header {
+  background-color: #4f46e5; /* Indigo */
+  color: #fff;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+/* Chat Messages Area */
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Chat Message */
+.chat-message {
+  padding: 0.75rem;
+  border-radius: 6px;
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-message--own {
+  background-color: #dbeafe; /* light blue */
+  align-self: flex-end;
+  text-align: right;
+}
+
+.chat-message--other {
+  background-color: #e5e7eb; /* gray-200 */
+  align-self: flex-start;
+}
+
+.chat-message-sender {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #374151; /* slate-700 */
+}
+
+.chat-message-text {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  color: #111827; /* slate-900 */
+}
+
+.chat-message-time {
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280; /* gray-500 */
+}
+
+/* Chat Footer */
+.chat-footer {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  gap: 0.5rem;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.chat-send-button {
+  background-color: #4f46e5; /* Indigo */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-send-button:hover {
+  background-color: #4338ca; /* Darker indigo */
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .chat-container {
+    height: 90vh;
+  }
+
+  .chat-header {
+    font-size: 1.25rem;
+  }
+
+  .chat-footer {
+    flex-direction: column;
+  }
+
+  .chat-send-button {
+    width: 100%;
+  }
+}
