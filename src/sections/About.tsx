@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import aboutImage from "../assets/about-us.png";
 
 const About = () => {
@@ -5,15 +6,27 @@ const About = () => {
     <section className="about">
       <div className="container">
         {/* Section Introduction */}
-        <div className="about-header text-center">
+        <motion.div
+          className="about-header text-center"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
           <p className="about-tag">Who Are We?</p>
           <h2 className="about-title">
             Tiny Drops Make Mighty Oceans of Hope.
           </h2>
-        </div>
+        </motion.div>
 
         {/* Two Column Content */}
-        <div className="about-content">
+        <motion.div
+          className="about-content"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
           {/* Left Column */}
           <div className="about-text">
             <div className="about-story">
@@ -61,7 +74,7 @@ const About = () => {
               className="about-main-image"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

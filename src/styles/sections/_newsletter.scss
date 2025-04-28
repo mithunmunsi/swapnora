@@ -1,59 +1,111 @@
-/* SECTION NEWSLETTER */
-.section-newsletter {
+/* Newsletter Section */
+.newsletter {
   padding: 50px 0;
-}
-.master-header__box {
-  max-width: 120rem;
-}
-.master-header__heading {
   text-align: center;
+  background-color: #f5f9fa;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.newsletter__content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.newsletter__header {
+  margin-bottom: 5rem;
+}
+
+.newsletter__title {
   font-family: "Inter", sans-serif;
   font-size: 3.2rem;
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  margin: 0 auto;
-  width: 90%;
-  line-height: 1.4;
-  margin-bottom: 5rem;
   color: #f9fafa;
+  line-height: 1.4;
 }
-.optin {
+
+.newsletter__optin {
   text-align: center;
 }
-.optin__text {
+
+.newsletter__description {
   font-size: 2rem;
-  margin-bottom: 2rem;
   color: #f9fafa;
+  margin-bottom: 2rem;
 }
-#ck_subscribe_form {
-  clear: both;
-}
-.optin__form {
-  background-color: #fff;
+
+.newsletter__form {
   display: inline-block;
+  background-color: #fff;
   border-radius: 0.5rem;
   padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-.optin__form input {
+
+.newsletter__input {
   background-color: #f9fafa;
   color: #38464d;
   font-size: 2rem;
-  width: 30rem;
   padding: 1.2rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  margin-right: 0.3rem;
+  width: 100%;
+  max-width: 30rem;
   border: 1px solid transparent;
-  -webkit-transition: border 0.2s;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
   transition: border 0.2s;
 }
-.optin__form button {
+
+.newsletter__input:focus {
+  border-color: #ff951f;
+}
+
+.newsletter__submit {
   background-color: #ff951f;
   color: #f9fafa;
+  font-size: 2rem;
   border-radius: 0.5rem;
   padding: 1.2rem 2rem;
+  width: 100%;
+  max-width: 30rem;
   border: none;
-  font-size: 2rem;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.newsletter__submit:hover {
+  background-color: #e87c1f;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .newsletter__header {
+    margin-bottom: 2rem;
+  }
+  .newsletter__form {
+    padding: 1rem 2rem;
+  }
+  .newsletter__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .newsletter__description {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .newsletter__input {
+    font-size: 1.4rem;
+    padding: 1rem 1.2rem;
+    width: 90%;
+    max-width: none;
+  }
+
+  .newsletter__submit {
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+  }
 }

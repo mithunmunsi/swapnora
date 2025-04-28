@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion"; // 🧡 Animation library
 import recentDonation from "../assets/recent-donations.png";
 
 type Donation = {
@@ -26,38 +27,69 @@ const DonationFeed = () => {
   return (
     <section className="donation-feed">
       <div className="container">
-        <div className="donation-grid">
+        <motion.div
+          className="donation-grid"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
           {/* Image Section */}
-          <div className="donation-image">
+          <motion.div
+            className="donation-image"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          >
             <img
               src={recentDonation}
               alt="Recent donations illustration"
               className="image"
               loading="lazy"
             />
-          </div>
+          </motion.div>
 
           {/* Donations List */}
-          <div className="donation-list">
+          <motion.div
+            className="donation-list"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+          >
             <div className="donation-card">
               <h2 className="donation-title">💸 Recent Donations</h2>
 
               <ul className="donation-items">
                 {donations.map((donation) => (
-                  <li key={donation.id} className="donation-item">
+                  <motion.li
+                    key={donation.id}
+                    className="donation-item"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.5 }}
+                  >
                     <div className="donation-info">
                       <p className="donor-name">{donation.donor}</p>
                       <p className="donation-date">{donation.date}</p>
                     </div>
                     <div className="donation-amount">${donation.amount}</div>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
 
-              <button className="donation-button">See all donors</button>
+              <motion.button
+                className="donation-button"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                See all donors
+              </motion.button>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

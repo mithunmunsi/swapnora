@@ -3,7 +3,7 @@ import newsletterBg from "../assets/newsletter-bg.webp";
 const Newsletter = () => {
   return (
     <section
-      className="section-newsletter"
+      className="newsletter"
       style={{
         backgroundImage: `url(${newsletterBg})`,
         backgroundRepeat: "no-repeat",
@@ -11,42 +11,45 @@ const Newsletter = () => {
         backgroundSize: "cover",
       }}
     >
-      <div className="container">
-        <div className="master-header__box">
-          <h1 className="master-header__heading">
-            A Small Gift, A Big Change.
-          </h1>
+      <div className="newsletter__content">
+        <header className="newsletter__header">
+          <h1 className="newsletter__title">A Small Gift, A Big Change.</h1>
+        </header>
 
-          <div className="optin">
-            <p className="optin__text">
-              Subscribe our newsletter and don't miss an update to new projects!
-            </p>
+        <div className="newsletter__optin">
+          <p className="newsletter__description">
+            Subscribe to our newsletter and don't miss an update on new
+            projects!
+          </p>
 
-            <form
-              id="ck_subscribe_form"
-              className="ck_subscribe_form optin__form"
-              action="#"
-              data-remote="true"
-            >
-              <input
-                type="text"
-                name="first_name"
-                className="ck_first_name"
-                id="ck_firstNameField"
-                placeholder="First Name"
-              />
-              <input
-                type="email"
-                name="email"
-                className="ck_email_address"
-                id="ck_emailField"
-                placeholder="Email Address"
-              />
-              <input type="hidden" name="id" value="90587" id="90587" />
+          <form
+            id="newsletter_form"
+            className="newsletter__form"
+            action="#"
+            data-remote="true"
+          >
+            <input
+              type="text"
+              name="first_name"
+              className="newsletter__input"
+              id="newsletter_first_name"
+              placeholder="First Name"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              className="newsletter__input"
+              id="newsletter_email"
+              placeholder="Email Address"
+              required
+            />
+            <input type="hidden" name="id" value="90587" />
 
-              <button>YES, PLEASE!</button>
-            </form>
-          </div>
+            <button type="submit" className="newsletter__submit">
+              YES, PLEASE!
+            </button>
+          </form>
         </div>
       </div>
     </section>

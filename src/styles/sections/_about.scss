@@ -2,6 +2,10 @@
 
 .about {
   padding: 4rem 0;
+  opacity: 0; /* Start hidden */
+  transform: translateY(40px); /* Start a bit lower */
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.2s; /* small delay */
 }
 
 .about-header {
@@ -85,4 +89,75 @@
   max-width: 100%;
   height: auto;
   border-radius: 1rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .about-title {
+    font-size: 2.2rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .about-text,
+  .about-image {
+    width: 100%;
+  }
+
+  .about-header {
+    text-align: center;
+  }
+
+  .about-title {
+    font-size: 2rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.4rem;
+  }
+
+  .about-card-image {
+    top: -10px;
+    right: -10px;
+    width: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 3rem 0;
+  }
+
+  .about-tag {
+    font-size: 0.85rem;
+  }
+
+  .about-title {
+    font-size: 1.75rem;
+  }
+
+  .about-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .about-paragraph {
+    font-size: 0.95rem;
+  }
+
+  .about-card {
+    padding: 1.25rem;
+  }
+
+  .about-card-image {
+    width: 60px;
+  }
 }

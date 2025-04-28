@@ -1,7 +1,7 @@
+import { motion } from "framer-motion";
 import FeatureImg1 from "../assets/featuredi-1.jpg";
 import FeatureImg2 from "../assets/featuredi-2.jpg";
 import FeatureImg3 from "../assets/featuredi-3.jpg";
-import FeatureImg4 from "../assets/featuredi-4.jpg";
 import Profile1 from "../assets/profile.png";
 import Profile2 from "../assets/woman.png";
 
@@ -27,27 +27,35 @@ const featuredData = [
     title: "Health Camp",
     desc: "Organizing free medical checkups in remote villages.",
   },
-  {
-    href: "/donate",
-    imgSrc: FeatureImg4,
-    alt: "Flood relief in Bangladesh.",
-    title: "Flood Relief Bangladesh",
-    desc: "Helping flood-affected communities in Bangladesh.",
-  },
 ];
 
 const FeaturedProjects = () => {
   return (
     <section className="featured-section">
       <div className="featured-container">
-        <div className="featured-header">
+        {/* Header */}
+        <motion.div
+          className="featured-header"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
           <div className="featured-tag">Featured Projects</div>
           <h2 className="featured-title">Donate for Upcoming Projects</h2>
-        </div>
+        </motion.div>
 
+        {/* Projects Grid */}
         <div className="featured-grid">
           {featuredData.map((item, idx) => (
-            <div key={idx} className="featured-item">
+            <motion.div
+              key={idx}
+              className="featured-item"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: idx * 0.2 }}
+              viewport={{ once: true }}
+            >
               <img
                 src={item.imgSrc}
                 alt={item.alt}
@@ -92,7 +100,7 @@ const FeaturedProjects = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

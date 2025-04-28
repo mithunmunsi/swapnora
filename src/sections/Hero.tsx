@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion"; // Import motion
 import heroBG from "../assets/hero-bg.png";
 
 const Hero = () => {
@@ -7,7 +8,13 @@ const Hero = () => {
       <div className="container">
         <div className="hero-grid">
           {/* Text Content */}
-          <div className="hero-content">
+          <motion.div
+            className="hero-content"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <h1 className="hero-heading">
               <span className="hero-heading-main">For Someone</span>
               <span className="hero-heading-sub">Your Smallest Gift...</span>
@@ -24,17 +31,23 @@ const Hero = () => {
             <Link to="/donate" className="hero-button">
               Donate Now
             </Link>
-          </div>
+          </motion.div>
 
           {/* Image Content */}
-          <div className="hero-image">
+          <motion.div
+            className="hero-image"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
             <img
               src={heroBG}
               alt="People receiving donations happily"
               className="hero-img"
               loading="lazy"
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
