@@ -32,7 +32,7 @@ const DonationFeed = () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
         >
           {/* Image Section */}
           <motion.div
@@ -40,7 +40,7 @@ const DonationFeed = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            transition={{ duration: 0.6 }}
           >
             <img
               src={recentDonation}
@@ -53,10 +53,10 @@ const DonationFeed = () => {
           {/* Donations List */}
           <motion.div
             className="donation-list"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            transition={{ duration: 0.6 }}
           >
             <div className="donation-card">
               <h2 className="donation-title">💸 Recent Donations</h2>

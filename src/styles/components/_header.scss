@@ -83,8 +83,9 @@
   display: none;
   flex-direction: column;
   position: absolute;
-  top: 60px; /* Adjust based on the height of the navbar */
+  top: 67px; /* Adjust based on the height of the navbar */
   right: 20px;
+  width: 86%;
   background-color: #fff;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -107,14 +108,19 @@
 /* Show hamburger menu on mobile */
 @media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 0.2rem 0.4rem;
+  }
+  .navbar-menu {
+    margin-left: 0;
   }
 
   .navbar-list {
     flex-direction: column;
     width: 100%;
     margin-top: 0.5rem;
+  }
+  .navbar-item {
+    text-align: center;
   }
   .navbar-cta {
     display: none;

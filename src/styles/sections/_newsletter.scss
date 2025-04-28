@@ -38,23 +38,24 @@
 }
 
 .newsletter__form {
-  display: inline-block;
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
   background-color: #fff;
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .newsletter__input {
   background-color: #f9fafa;
   color: #38464d;
-  font-size: 2rem;
-  padding: 1.2rem 1.5rem;
+  font-size: 1.2rem;
+  padding: 1rem 1rem;
+  max-width: 20rem;
   width: 100%;
-  max-width: 30rem;
   border: 1px solid transparent;
   border-radius: 0.5rem;
-  margin-bottom: 1rem;
   transition: border 0.2s;
 }
 
@@ -65,11 +66,11 @@
 .newsletter__submit {
   background-color: #ff951f;
   color: #f9fafa;
-  font-size: 2rem;
+  font-size: 1.2rem;
   border-radius: 0.5rem;
-  padding: 1.2rem 2rem;
+  padding: 1rem 1rem;
   width: 100%;
-  max-width: 30rem;
+  max-width: 20rem;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;

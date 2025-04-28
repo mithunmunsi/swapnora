@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion"; // Import motion
 import heroBG from "../assets/hero-bg.png";
+import Brands from "../components/Brands";
 
 const Hero = () => {
   return (
@@ -50,6 +51,7 @@ const Hero = () => {
           </motion.div>
         </div>
       </div>
+      <Brands />
     </section>
   );
 };

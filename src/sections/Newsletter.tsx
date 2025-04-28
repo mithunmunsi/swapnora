@@ -46,9 +46,7 @@ const Newsletter = () => {
             />
             <input type="hidden" name="id" value="90587" />
 
-            <button type="submit" className="newsletter__submit">
-              YES, PLEASE!
-            </button>
+            <button className="newsletter__submit">YES, PLEASE!</button>
           </form>
         </div>
       </div>
