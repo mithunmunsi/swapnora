@@ -1,8 +1,25 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Listen for window resizing and adjust the view mode
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <header className="navbar">
+    <div className="navbar">
       <div className="container navbar-container">
         {/* Brand Logo */}
         <div className="navbar-brand">
@@ -16,26 +33,53 @@ const Navbar = () => {
           </Link>
         </div>
 
+        {/* Hamburger Menu */}
+        <div className="hamburger" onClick={toggleMobileMenu}>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+
         {/* Navigation Links */}
-        <nav className="navbar-menu">
+        <nav
+          className={`navbar-menu ${
+            isMobileMenuOpen ? "navbar-menu-mobile active" : ""
+          }`}
+        >
           <ul className="navbar-list">
             <li className="navbar-item">
-              <Link to="/" className="navbar-link">
+              <Link
+                to="/"
+                className="navbar-link"
+                onClick={isMobileView ? toggleMobileMenu : undefined} // Only toggle on mobile
+              >
                 Home
               </Link>
             </li>
             <li className="navbar-item">
-              <Link to="/donate" className="navbar-link">
+              <Link
+                to="/donate"
+                className="navbar-link"
+                onClick={isMobileView ? toggleMobileMenu : undefined} // Only toggle on mobile
+              >
                 Donate
               </Link>
             </li>
             <li className="navbar-item">
-              <Link to="/vote" className="navbar-link">
+              <Link
+                to="/vote"
+                className="navbar-link"
+                onClick={isMobileView ? toggleMobileMenu : undefined} // Only toggle on mobile
+              >
                 Vote
               </Link>
             </li>
             <li className="navbar-item">
-              <Link to="/chat" className="navbar-link">
+              <Link
+                to="/chat"
+                className="navbar-link"
+                onClick={isMobileView ? toggleMobileMenu : undefined} // Only toggle on mobile
+              >
                 Live Chat
               </Link>
             </li>
@@ -52,7 +96,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 

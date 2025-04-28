@@ -1,69 +1,133 @@
-import { useState } from "react";
+// src/pages/Register.tsx
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import api from "../api";
 
-const Register = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
+const Register: React.FC = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
 
-  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Send formData to backend (API integration)
-    console.log("Registering user:", formData);
-    setSuccess(true);
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      const res = await api.post("/api/v1/auth/register", {
+        name,
+        email,
+        username,
+        password,
+        confirmPassword,
+      });
+      console.log("Ragistration is successfull", res.data);
+      navigate("/login");
+      console.log("API Base URL:", import.meta.env.VITE_DEV_API_URL);
+    } catch (err) {
+      console.error(err);
+      setError("Registration is failed");
+    }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded shadow max-w-md w-full">
-        <h2 className="text-2xl font-semibold mb-4">Create Account</h2>
-        {success ? (
-          <p className="text-green-600">
-            🎉 Registration successful! Please login.
-          </p>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
+    <main className="register">
+      <div className="register-form">
+        <h2 className="register-heading mb-lg">Create your account!</h2>
+        <form className="form form--signup" onSubmit={handleSubmit}>
+          <div className="form__group">
+            <label className="form__label" htmlFor="name">
+              Your name
+            </label>
             <input
+              className="form__input"
+              id="name"
               type="text"
-              name="name"
               placeholder="Full Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded"
             />
+          </div>
+          <div className="form__group">
+            <label className="form__label" htmlFor="email">
+              Email address
+            </label>
             <input
+              className="form__input"
+              id="email"
               type="email"
-              name="email"
-              placeholder="Email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded"
             />
+          </div>
+          <div className="form__group">
+            <label className="form__label" htmlFor="username">
+              Username
+            </label>
             <input
-              type="password"
-              name="password"
-              placeholder="Password"
+              className="form__input"
+              id="username"
+              type="text"
+              placeholder="Your Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               required
-              onChange={handleChange}
-              className="w-full px-4 py-2 border rounded"
             />
-            <button
-              type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"
-            >
-              Register
+          </div>
+          <div className="form__group mb-md">
+            <label className="form__label" htmlFor="password">
+              Password
+            </label>
+            <input
+              className="form__input"
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength={8}
+            />
+          </div>
+          <div className="form__group mb-md">
+            <label className="form__label" htmlFor="passwordConfirm">
+              Confirm password
+            </label>
+            <input
+              className="form__input"
+              id="passwordConfirm"
+              type="password"
+              placeholder="••••••••"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              minLength={8}
+            />
+          </div>
+          <div className="form__group">
+            {error && <p className="error-message">{error}</p>}
+
+            <button className="btn btn--green" type="submit">
+              Sign up
             </button>
-          </form>
-        )}
+            <p className="create-account">
+              Already have an account? <a href="/login">Login</a>
+            </p>
+          </div>
+        </form>
       </div>
-    </div>
+    </main>
   );
 };
 

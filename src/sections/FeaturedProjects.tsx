@@ -7,28 +7,28 @@ import Profile2 from "../assets/woman.png";
 
 const featuredData = [
   {
-    href: "/member-stories/point-of-pride",
+    href: "/donate",
     imgSrc: FeatureImg3,
     alt: "Providing clean drinking water in rural areas.",
     title: "Clean Water Initiative",
     desc: "Providing clean drinking water in rural areas.",
   },
   {
-    href: "/member-stories/austin-farm-sanctuary",
+    href: "/donate",
     imgSrc: FeatureImg2,
     alt: "Helping children with essential school materials.",
     title: "School Supplies Drive",
     desc: "Helping children with essential school materials.",
   },
   {
-    href: "/member-stories/the-tech-interactive",
+    href: "/donate",
     imgSrc: FeatureImg1,
     alt: "Organizing free medical checkups in remote villages.",
     title: "Health Camp",
     desc: "Organizing free medical checkups in remote villages.",
   },
   {
-    href: "/member-stories/the-tech-interactive",
+    href: "/donate",
     imgSrc: FeatureImg4,
     alt: "Flood relief in Bangladesh.",
     title: "Flood Relief Bangladesh",

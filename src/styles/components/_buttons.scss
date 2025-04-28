@@ -14,10 +14,6 @@
   cursor: pointer;
 }
 
-.btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-}
 .btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
@@ -29,13 +25,25 @@
   transform: translateY(-1px);
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
 }
+
 .btn-login {
-  background-color: #e2e5ea;
+  color: #3b3b3b;
+  border: 1px solid #878484 !important;
 }
+
+.btn-login:hover {
+  color: #cd620a;
+}
+
 .btn-register {
   background-color: #036217;
   color: #f5f9fa;
 }
+
+.btn-register:hover {
+  background-color: #059669;
+}
+
 .donate-now {
   background-color: #036217;
   color: #ffffff;

@@ -13,16 +13,16 @@ const Footer = () => {
         <nav className="footer-navigation">
           <ul className="footer-links">
             <li>
-              <Link to="#">Privacy Policy</Link>
+              <Link to="/privacy">Privacy Policy</Link>
             </li>
             <li>
-              <Link to="#">Terms & Conditions</Link>
+              <Link to="/terms&conditions">Terms & Conditions</Link>
             </li>
             <li>
-              <Link to="#">Become a Donor</Link>
+              <Link to="/donor">Become a Donor</Link>
             </li>
             <li>
-              <Link to="#">Become a Nora</Link>
+              <Link to="/nora">Become a Nora</Link>
             </li>
           </ul>
         </nav>
