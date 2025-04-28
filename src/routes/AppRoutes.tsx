@@ -9,6 +9,7 @@ import AdminProjects from "../pages/admin/AdminProjects";
 import AdminUsers from "../pages/admin/AdminUsers";
 import AdminSettings from "../pages/admin/AdminSettings";
 import Success from "../pages/Success";
+import Cancel from "../pages/Cancel";
 
 // Lazy load pages/components
 const AdminDashboard = lazy(() => import("../pages/admin/AdminDashboard"));
@@ -21,7 +22,6 @@ const Vote = lazy(() => import("../pages/Vote"));
 const Chat = lazy(() => import("../pages/Chat"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
-const Cancel = lazy(() => import("../pages/Cancel"));
 const DonationFeed = lazy(() => import("../components/DonationFeed"));
 const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
 
