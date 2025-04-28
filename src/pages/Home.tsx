@@ -1,6 +1,6 @@
 import DonationFeed from "../sections/DonationFeed";
 import About from "../sections/About";
-import Featured from "../sections/Featured";
+import Featured from "../sections/FeaturedProjects";
 import Hero from "../sections/Hero";
 import Impacts from "../sections/StatSection";
 import Newsletter from "../sections/Newsletter";

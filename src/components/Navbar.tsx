@@ -5,8 +5,8 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="brand">
         <Link to="/" className="flex gap-2">
-          <img src="../../public/favicon.png" alt="" />
-          <h1 className="text-4xl">Swapnora.com</h1>
+          <img src="/favicon.png" alt="" />
+          <h1 className="text-4xl">Swapnora</h1>
         </Link>
       </div>
       <div className="main-nav">

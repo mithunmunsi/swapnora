@@ -1,4 +1,4 @@
-import aboutUS from "../assets/about-us.jpg";
+import aboutUS from "../assets/about-us.png";
 const About = () => {
   return (
     <section className="about-section">
@@ -6,8 +6,7 @@ const About = () => {
         <div className="tag text-center">Who Are We?</div>
         <div className="tag-details">
           <h1 className="heading-secondary text-center">
-            We are a non-profit organization focused on helping communities
-            through impactful projects funded by people like you.
+            Tiny Drops Make Mighty Oceans of Hope.
           </h1>
         </div>
 
@@ -21,8 +20,10 @@ const About = () => {
             </div>
             <div className="about_card abt-bg">
               <p className="paragraph">
-                We believe nonprofits shouldn’t sacrifice their means to satisfy
-                their missions. That’s why Give Lively was created. We are a
+                We are a non-profit organization focused on helping communities
+                through impactful projects funded by people like you. We believe
+                nonprofits shouldn’t sacrifice their means to satisfy their
+                missions. That’s why Give Lively was created. We are a
                 philanthropist-funded, social impact–driven tech company that
                 collaborates directly with nonprofits to build better
                 fundraising tech and give it away to them for free.

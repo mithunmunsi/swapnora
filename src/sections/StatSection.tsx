@@ -2,11 +2,22 @@ const StatSection = () => {
   return (
     <section className="stats-section bg-blue-50 p-8 md:p-16 text-center">
       <div className="stats-content">
-        <h2 className="text-3xl font-semibold mb-6 text-white">Our Impact</h2>
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="content-header">
+          <div className="tag text-center">Stats</div>
+          <div className="tag-details">
+            <h2 className="heading-secondary text-center">
+              Hope Begins with a Single Penny.
+            </h2>
+          </div>
+        </div>
+        <div className="content-body grid md:grid-cols-4 gap-6">
           <div>
             <p className="text-4xl font-bold text-white">5K+</p>
             <p className="text-white">People Helped</p>
+          </div>
+          <div>
+            <p className="text-4xl font-bold text-white">2K+</p>
+            <p className="text-white">Donors</p>
           </div>
           <div>
             <p className="text-4xl font-bold text-white">100+</p>
