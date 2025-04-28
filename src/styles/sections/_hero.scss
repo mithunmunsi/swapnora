@@ -1,0 +1,62 @@
+/* Hero.css */
+
+.hero {
+  padding: 6rem 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.hero-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hero-heading-main {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1d4ed8;
+}
+
+.hero-heading-sub {
+  font-size: 2rem;
+  color: #374151;
+}
+
+.hero-description {
+  font-size: 1rem;
+  color: #6b7280;
+  max-width: 600px;
+}
+
+.hero-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: #f97316;
+  color: white;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.hero-button:hover {
+  background-color: #fb923c;
+}
+
+.hero-image .hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

@@ -1,31 +1,27 @@
 const StatSection = () => {
   return (
-    <section className="stats-section bg-blue-50 p-8 md:p-16 text-center">
-      <div className="stats-content">
-        <div className="content-header">
-          <div className="tag text-center">Stats</div>
-          <div className="tag-details">
-            <h2 className="heading-secondary text-center">
-              Hope Begins with a Single Penny.
-            </h2>
-          </div>
+    <section className="stats-section">
+      <div className="stats-container">
+        <div className="stats-header">
+          <div className="stats-tag">Stats</div>
+          <h2 className="stats-title">Hope Begins with a Single Penny.</h2>
         </div>
-        <div className="content-body grid md:grid-cols-4 gap-6">
-          <div>
-            <p className="text-4xl font-bold text-white">5K+</p>
-            <p className="text-white">People Helped</p>
+        <div className="stats-grid">
+          <div className="stats-item">
+            <p className="stats-number">5K+</p>
+            <p className="stats-label">People Helped</p>
           </div>
-          <div>
-            <p className="text-4xl font-bold text-white">2K+</p>
-            <p className="text-white">Donors</p>
+          <div className="stats-item">
+            <p className="stats-number">2K+</p>
+            <p className="stats-label">Donors</p>
           </div>
-          <div>
-            <p className="text-4xl font-bold text-white">100+</p>
-            <p className="text-white">Projects Completed</p>
+          <div className="stats-item">
+            <p className="stats-number">100+</p>
+            <p className="stats-label">Projects Completed</p>
           </div>
-          <div>
-            <p className="text-4xl font-bold text-white">200+</p>
-            <p className="text-white">Volunteers</p>
+          <div className="stats-item">
+            <p className="stats-number">200+</p>
+            <p className="stats-label">Volunteers</p>
           </div>
         </div>
       </div>

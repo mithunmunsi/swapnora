@@ -9,25 +9,20 @@ const featuredData = [
   {
     href: "/member-stories/point-of-pride",
     imgSrc: FeatureImg3,
-
     alt: "Providing clean drinking water in rural areas.",
-
     title: "Clean Water Initiative",
-    desc: " Providing clean drinking water in rural areas.",
+    desc: "Providing clean drinking water in rural areas.",
   },
   {
     href: "/member-stories/austin-farm-sanctuary",
     imgSrc: FeatureImg2,
-
     alt: "Helping children with essential school materials.",
-
     title: "School Supplies Drive",
     desc: "Helping children with essential school materials.",
   },
   {
     href: "/member-stories/the-tech-interactive",
     imgSrc: FeatureImg1,
-
     alt: "Organizing free medical checkups in remote villages.",
     title: "Health Camp",
     desc: "Organizing free medical checkups in remote villages.",
@@ -35,66 +30,64 @@ const featuredData = [
   {
     href: "/member-stories/the-tech-interactive",
     imgSrc: FeatureImg4,
-
-    alt: "Organizing free medical checkups in remote villages.",
-
+    alt: "Flood relief in Bangladesh.",
     title: "Flood Relief Bangladesh",
-    desc: "Organizing free medical checkups in remote villages.",
+    desc: "Helping flood-affected communities in Bangladesh.",
   },
 ];
 
 const FeaturedProjects = () => {
   return (
     <section className="featured-section">
-      <div className="container">
-        <div className="content-header">
-          <div className="tag text-center">Featured Projects</div>
-          <div className="tag-details">
-            <h2 className="heading-secondary text-center">
-              Donate for upcoming projects
-            </h2>
-          </div>
+      <div className="featured-container">
+        <div className="featured-header">
+          <div className="featured-tag">Featured Projects</div>
+          <h2 className="featured-title">Donate for Upcoming Projects</h2>
         </div>
-        <div className="content-body grid md:grid-cols-4 gap-6">
+
+        <div className="featured-grid">
           {featuredData.map((item, idx) => (
-            <div key={idx} className="featured_item">
+            <div key={idx} className="featured-item">
               <img
                 src={item.imgSrc}
                 alt={item.alt}
-                className="featured_img"
+                className="featured-image"
                 loading="lazy"
               />
 
-              <div className="featured_text shadow-md">
-                <h3 className="heading-tertiary">{item.title}</h3>
-                <p className="description">{item.desc}</p>
-                <div className="divider"></div>
+              <div className="featured-content">
+                <h3 className="featured-item-title">{item.title}</h3>
+                <p className="featured-item-description">{item.desc}</p>
 
-                {/* Progress Bar */}
-                <div className="flex justify-between">
-                  <p>1289€</p> <p>5 Days to Go</p>
+                <div className="featured-divider"></div>
+
+                <div className="featured-stats">
+                  <p className="featured-amount">1289€</p>
+                  <p className="featured-days">5 Days to Go</p>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-3">
+
+                <div className="featured-progress-bar">
                   <div
-                    className="bg-orange-500 h-3 rounded-full"
+                    className="featured-progress"
                     style={{ width: "54%" }}
-                  />
+                  ></div>
                 </div>
-                <div className="profile-container">
-                  <div className="profile">
-                    <img src={Profile1} alt="Dan" className="profile-img" />
-                    <img src={Profile2} alt="Tiina" className="profile-img" />
+
+                <div className="featured-profiles">
+                  <div className="profile-images">
+                    <img src={Profile1} alt="Dan" className="profile-image" />
+                    <img src={Profile2} alt="Tiina" className="profile-image" />
                   </div>
 
-                  <div className="profile-name">
+                  <div className="profile-names">
                     <span>Dan, </span>
-                    <span>Tiina </span>
+                    <span>Tiina, </span>
                     <span>and Others</span>
                   </div>
 
-                  <div className="donate-container">
-                    <a href={item.href} className="featured_item-link">
-                      <div className="donate-button">Donate</div>
+                  <div className="donate-button-container">
+                    <a href={item.href} className="donate-link">
+                      Donate
                     </a>
                   </div>
                 </div>

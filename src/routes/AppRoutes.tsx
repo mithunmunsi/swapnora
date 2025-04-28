@@ -20,7 +20,7 @@ const Vote = lazy(() => import("../pages/Vote"));
 const Chat = lazy(() => import("../pages/Chat"));
 const Login = lazy(() => import("../pages/Login"));
 const Register = lazy(() => import("../pages/Register"));
-const DonationFeed = lazy(() => import("../sections/DonationFeed"));
+const DonationFeed = lazy(() => import("../components/DonationFeed"));
 const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
 
 const AppRoutes = () => {

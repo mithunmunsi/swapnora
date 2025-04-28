@@ -1,0 +1,59 @@
+/* SECTION NEWSLETTER */
+.section-newsletter {
+  padding: 50px 0;
+}
+.master-header__box {
+  max-width: 120rem;
+}
+.master-header__heading {
+  text-align: center;
+  font-family: "Inter", sans-serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: 0 auto;
+  width: 90%;
+  line-height: 1.4;
+  margin-bottom: 5rem;
+  color: #f9fafa;
+}
+.optin {
+  text-align: center;
+}
+.optin__text {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #f9fafa;
+}
+#ck_subscribe_form {
+  clear: both;
+}
+.optin__form {
+  background-color: #fff;
+  display: inline-block;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+.optin__form input {
+  background-color: #f9fafa;
+  color: #38464d;
+  font-size: 2rem;
+  width: 30rem;
+  padding: 1.2rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  margin-right: 0.3rem;
+  border: 1px solid transparent;
+  -webkit-transition: border 0.2s;
+  transition: border 0.2s;
+}
+.optin__form button {
+  background-color: #ff951f;
+  color: #f9fafa;
+  border-radius: 0.5rem;
+  padding: 1.2rem 2rem;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}

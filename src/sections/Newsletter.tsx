@@ -1,6 +1,16 @@
+import newsletterBg from "../assets/newsletter-bg.webp";
+
 const Newsletter = () => {
   return (
-    <section className="section-newsletter">
+    <section
+      className="section-newsletter"
+      style={{
+        backgroundImage: `url(${newsletterBg})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      }}
+    >
       <div className="container">
         <div className="master-header__box">
           <h1 className="master-header__heading">

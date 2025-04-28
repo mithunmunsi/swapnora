@@ -1,0 +1,108 @@
+.header {
+  background-color: #f5f9fa; /* Tailwind's blue-800 */
+}
+/* Navbar.css */
+
+.navbar {
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  padding: 1rem 5rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.brand-name {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.navbar-menu {
+  flex-grow: 1;
+  margin-left: 4rem;
+}
+
+.navbar-list {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.navbar-link {
+  text-decoration: none;
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.navbar-link:hover {
+  color: #2563eb;
+}
+
+.navbar-cta {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-login {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+.btn-login:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-register {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.btn-register:hover {
+  background-color: #059669;
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-list,
+  .cta-buttons {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+
+  .nav-link {
+    width: 100%;
+    text-align: left;
+  }
+}

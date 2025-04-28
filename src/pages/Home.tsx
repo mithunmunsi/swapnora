@@ -1,4 +1,4 @@
-import DonationFeed from "../sections/DonationFeed";
+import DonationFeed from "../components/DonationFeed";
 import About from "../sections/About";
 import Featured from "../sections/FeaturedProjects";
 import Hero from "../sections/Hero";

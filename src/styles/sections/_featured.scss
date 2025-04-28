@@ -1,0 +1,150 @@
+/* Featured Section */
+.featured-section {
+  background-color: #f9fafb; /* light gray background */
+  padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  .featured-section {
+    padding: 4rem;
+  }
+}
+
+.featured-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.featured-tag {
+  display: inline-block;
+  background-color: #1d4ed8; /* blue */
+  color: white;
+  padding: 0.25rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  margin-bottom: 1rem;
+}
+
+.featured-title {
+  font-size: 2rem;
+  color: #1e293b; /* dark slate */
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .featured-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.featured-item {
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.featured-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.featured-item-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.featured-item-description {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #475569;
+}
+
+.featured-divider {
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
+}
+
+.featured-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.featured-progress-bar {
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.75rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.featured-progress {
+  background-color: #f97316; /* orange */
+  height: 100%;
+  width: 0%;
+}
+
+.featured-profiles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.profile-images {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.profile-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+  background-color: #d1d5db;
+}
+
+.profile-names {
+  font-size: 0.875rem;
+  color: #64748b;
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+.donate-link {
+  background-color: #1d4ed8; /* blue */
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.donate-link:hover {
+  background-color: #2563eb;
+}

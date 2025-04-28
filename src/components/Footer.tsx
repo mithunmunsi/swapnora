@@ -1,56 +1,51 @@
-/* PAYMENT CARDS */
+import { Link } from "react-router-dom";
 import apple from "../assets/apple-pay.png";
 import google from "../assets/google-pay.svg";
 import paypal from "../assets/paypal.svg";
 import mastercard from "../assets/mastercard-logo.svg";
 import visacard from "../assets/visapay.png";
-import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container mx-auto">
-        <div className="flex flex-col justify-center items-center gap-8">
-          <SocialIcons />
-          <div className="footer__nav">
-            <ul className="flex flex-col lg:flex-row items-center gap-5 text-2xl">
-              <li>
-                <Link to="#">Privacy Policy</Link>
-              </li>
-              <li>
-                <Link to="#">Terms & Conditions</Link>
-              </li>
-              <li>
-                <Link to="#">Become a Donor</Link>
-              </li>
-              <li>
-                <Link to="#">Become a Nora</Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <ul className="flex max-w-md gap-5 justify-center items-center">
-              <li>
-                <img src={apple} alt="" />
-              </li>
-              <li>
-                <img src={google} alt="" />
-              </li>
-              <li>
-                <img src={paypal} alt="" />
-              </li>
-              <li>
-                <img src={mastercard} alt="" />
-              </li>
-              <li>
-                <img src={visacard} alt="" />
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className="copyright">Copyright 2025 @ All rights reserved.</p>
-          </div>
+      <div className="footer-container">
+        <SocialIcons />
+        <nav className="footer-navigation">
+          <ul className="footer-links">
+            <li>
+              <Link to="#">Privacy Policy</Link>
+            </li>
+            <li>
+              <Link to="#">Terms & Conditions</Link>
+            </li>
+            <li>
+              <Link to="#">Become a Donor</Link>
+            </li>
+            <li>
+              <Link to="#">Become a Nora</Link>
+            </li>
+          </ul>
+        </nav>
+        <div className="payment-methods">
+          <ul className="payment-icons">
+            <li>
+              <img src={apple} alt="Apple Pay" />
+            </li>
+            <li>
+              <img src={google} alt="Google Pay" />
+            </li>
+            <li>
+              <img src={paypal} alt="PayPal" />
+            </li>
+            <li>
+              <img src={mastercard} alt="MasterCard" />
+            </li>
+            <li>
+              <img src={visacard} alt="Visa Card" />
+            </li>
+          </ul>
         </div>
+        <p className="footer-copyright">&copy; 2025 All rights reserved.</p>
       </div>
     </footer>
   );
@@ -59,8 +54,9 @@ const Footer = () => {
 export default Footer;
 
 const SocialIcons = () => (
-  <div className="flex gap-6">
+  <div className="social-icons">
     <a href="https://facebook.com" aria-label="Facebook">
+      {/* Facebook Icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         x="0px"
