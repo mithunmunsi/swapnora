@@ -10,6 +10,7 @@ import AdminUsers from "../pages/admin/AdminUsers";
 import AdminSettings from "../pages/admin/AdminSettings";
 import Success from "../pages/Success";
 import Cancel from "../pages/Cancel";
+import NotFound from "../pages/NotFound";
 
 // Lazy load pages/components
 const AdminDashboard = lazy(() => import("../pages/admin/AdminDashboard"));
@@ -41,7 +42,7 @@ const AppRoutes = () => {
         {/* other routes */}
         <Route path="/cancel" element={<Cancel />} />
         <Route path="/success" element={<Success />} />
-
+        <Route path="*" element={<NotFound />} />
         {/* Protected Routes */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/donation-feed" element={<DonationFeed />} />
