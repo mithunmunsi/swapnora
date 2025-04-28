@@ -28,7 +28,7 @@ const Navbar = () => {
           </li>
           <li className="nav-item">
             <Link to="/chat" className="nav-link">
-              Chat
+              Live Chat
             </Link>
           </li>
         </ul>

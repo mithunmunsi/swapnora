@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 * {
   margin: 0;
   padding: 0;
@@ -168,20 +170,6 @@ body {
 .donate-now {
   background-color: #036217;
   color: #ffffff;
-}
-
-.footer {
-  background-color: #ece6e6;
-  color: #000000;
-  padding-top: 5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-.footer__nav ul li a:hover {
-  color: #ff0000;
-  transition: all 0.3s ease-in;
-}
-.copyright {
-  padding-bottom: 20px;
 }
 
 /* admin-sidebar.css */
@@ -477,4 +465,19 @@ img {
   height: 1px; /* Line thickness */
   background-color: #cacaca; /* Line color */
   margin: 20px 0; /* Space above and below the line */
+}
+
+/* FOOTER */
+.footer {
+  background-color: #6ecf8f;
+  color: #000000;
+  padding-top: 5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.footer__nav ul li a:hover {
+  color: #ff0000;
+  transition: all 0.3s ease-in;
+}
+.copyright {
+  padding-bottom: 20px;
 }

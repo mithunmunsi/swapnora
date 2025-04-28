@@ -5,15 +5,16 @@ import StorySection from "../components/StorySection";
 
 const Donate = () => {
   return (
-    <div className="container">
+    <div className="donate-page-container">
       <HeaderSection />
-      <div className="grid md:grid-cols-2 gap-8 mt-8">
-        <div>
-          <ProgressBar /> <br />
-          <br />
+      <div className="donate-content-grid">
+        <div className="donate-left-column">
+          <ProgressBar />
           <StorySection />
         </div>
-        <DonationForm />
+        <div className="donate-right-column">
+          <DonationForm />
+        </div>
       </div>
     </div>
   );
