@@ -1,3 +1,4 @@
+import DonationForm from "../components/DonationForm";
 import HeaderSection from "../components/HeaderSection";
 import ProgressBar from "../components/ProgressBar";
 import StorySection from "../components/StorySection";
@@ -13,7 +14,7 @@ const Donate = () => {
             <StorySection />
           </div>
           <div className="donate-right-column">
-            <div id="paypal-container-TXFWV5H78FSQC"></div>
+            <DonationForm />
           </div>
         </div>
       </div>
