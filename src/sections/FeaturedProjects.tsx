@@ -24,7 +24,7 @@ const featuredData: FeaturedItem[] = [
     desc: "Providing clean drinking water in rural areas.",
     raised: 300,
     goal: 2400,
-    endDate: "2025-05-10", // <-- Add ISO date
+    endDate: "2026-05-10", // <-- Add ISO date
   },
   {
     href: "https://www.paypal.com/donate/?hosted_button_id=RHUEZP5CSVBGS",
@@ -32,7 +32,7 @@ const featuredData: FeaturedItem[] = [
     alt: "Helping children with essential school materials.",
     title: "School Supplies Drive",
     desc: "Helping children with essential school materials.",
-    endDate: "2025-05-15",
+    endDate: "2026-05-15",
     raised: 785,
     goal: 2000,
   },
@@ -42,7 +42,7 @@ const featuredData: FeaturedItem[] = [
     alt: "Organizing free medical checkups in remote villages.",
     title: "Health Camp",
     desc: "Organizing free medical checkups in remote villages.",
-    endDate: "2025-05-05",
+    endDate: "2026-05-05",
     raised: 1289,
     goal: 2400,
   },
