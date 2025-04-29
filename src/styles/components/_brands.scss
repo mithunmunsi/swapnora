@@ -5,8 +5,10 @@
 
 .brands-container {
   width: 100%;
+  max-width: 1200px;
   overflow: hidden; /* prevent extra space */
   padding: 2rem 0;
+  margin: 0 auto;
 }
 
 .swiper-wrapper {

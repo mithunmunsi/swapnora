@@ -1,11 +1,17 @@
-// src/layouts/UserLayout.tsx
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { User } from "../types/User"; // <-- Correct import
 
-const UserLayout = ({ children }: { children: React.ReactNode }) => {
+interface UserLayoutProps {
+  user: User | null;
+  setUser: (user: User | null) => void;
+  children: React.ReactNode;
+}
+
+const UserLayout = ({ user, setUser, children }: UserLayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar />
+      <Navbar user={user} setUser={setUser} />
       <main className="flex-grow p-4">{children}</main>
       <Footer />
     </div>

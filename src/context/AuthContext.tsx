@@ -7,8 +7,8 @@ import React, {
 } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { User } from "../types/user";
 import api from "./../api";
+import { User } from "../types/User"; // <-- Correct import
 
 export interface AuthContextProps {
   token: string | null;

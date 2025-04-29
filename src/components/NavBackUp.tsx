@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { User } from "../types/User";
 
 const mockUser: User = {
@@ -15,7 +15,6 @@ interface NavbarProps {
 const Navbar = ({ user, setUser }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
-  const navigate = useNavigate(); // ⬅️ Create navigate instance
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -28,11 +27,6 @@ const Navbar = ({ user, setUser }: NavbarProps) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const handleFakeLogin = () => {
-    setUser(mockUser); // Set user (login)
-    navigate("/dashboard"); // Navigate to dashboard
-  };
 
   return (
     <div className="navbar">
@@ -103,13 +97,19 @@ const Navbar = ({ user, setUser }: NavbarProps) => {
         </nav>
 
         {/* CTA Area */}
-        {/* Only show Fake Login button if not logged in */}
         <div className="navbar-cta">
           {!user && (
             <>
-              <div className="btn btn-login" onClick={handleFakeLogin}>
+              <Link
+                to="/login"
+                className="btn btn-login"
+                onClick={() => setUser(mockUser)}
+              >
                 Login
-              </div>
+              </Link>
+              <Link to="/register" className="btn btn-register">
+                Register
+              </Link>
             </>
           )}
         </div>

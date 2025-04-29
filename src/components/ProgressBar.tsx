@@ -10,16 +10,12 @@ const ProgressBar = () => {
           alt="Fundraiser preview"
           className="image"
         />
-        {/* Play button overlay */}
-        <div className="play-button-container">
-          <button className="play-button">▶️</button>
-        </div>
       </div>
 
       {/* Amounts */}
       <div className="amounts">
-        <span className="amount-raised">$16,320 raised</span>
-        <span className="amount-goal">$30,000 goal</span>
+        <span className="amount-raised">$16,320 Spent</span>
+        <span className="amount-goal">$30,000 Raised</span>
       </div>
 
       {/* Progress Bar */}

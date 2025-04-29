@@ -1,32 +1,35 @@
-// src/AppRoutes.tsx
+// src/routes/AppRoutes.tsx
 import { Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 
 // Layouts
 import AdminLayout from "../layouts/AdminLayout";
-import UserLayout from "../layouts/UserLayout";
-import AdminProjects from "../pages/admin/AdminProjects";
-import AdminUsers from "../pages/admin/AdminUsers";
-import AdminSettings from "../pages/admin/AdminSettings";
+import DashboardLayout from "../pages/user/DashboardLayout";
+import ProtectedRoute from "./ProtectedRoute";
+
+// Pages
+import Home from "../pages/Home";
+import Donate from "../pages/Donate";
+import Vote from "../pages/Vote";
+import Chat from "../pages/Chat";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 import Success from "../pages/Success";
 import Cancel from "../pages/Cancel";
 import NotFound from "../pages/NotFound";
+import DonationFeed from "../components/DonationFeed";
+import DashboardHome from "../pages/user/DashboardHome";
+import NewsFeed from "../components/user/NewsFeed";
+import Profile from "../pages/user/Profile";
+import Settings from "../pages/user/Settings";
+import Messages from "../pages/user/Messages";
+import Notifications from "../pages/user/Notifications";
+import AdminProjects from "../pages/admin/AdminProjects";
+import AdminUsers from "../pages/admin/AdminUsers";
+import AdminSettings from "../pages/admin/AdminSettings";
 
-// Lazy load pages/components
-const AdminDashboard = lazy(() => import("../pages/admin/AdminDashboard"));
-const UserDashboard = lazy(() => import("../pages/user/UserDashboard"));
-
-// Lazy load pages/components
-const Home = lazy(() => import("../pages/Home"));
-const Donate = lazy(() => import("../pages/Donate"));
-const Vote = lazy(() => import("../pages/Vote"));
-const Chat = lazy(() => import("../pages/Chat"));
-const Login = lazy(() => import("../pages/Login"));
-const Register = lazy(() => import("../pages/Register"));
-const DonationFeed = lazy(() => import("../components/DonationFeed"));
-const ProtectedRoute = lazy(() => import("../components/ProtectedRoute"));
-
-const AppRoutes = () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
   const isAuthenticated = localStorage.getItem("token") !== null;
 
   return (
@@ -38,32 +41,33 @@ const AppRoutes = () => {
         <Route path="/chat" element={<Chat />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-
-        {/* other routes */}
         <Route path="/cancel" element={<Cancel />} />
         <Route path="/success" element={<Success />} />
         <Route path="*" element={<NotFound />} />
-        {/* Protected Routes */}
+
+        {/* Dashboard - User Layout */}
+        <Route
+          path="/dashboard"
+          element={<DashboardLayout user={user} setUser={setUser} />}
+        >
+          <Route index element={<DashboardHome />} />
+          <Route path="news-feed" element={<NewsFeed />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="donate" element={<Donate />} />
+          <Route path="chat" element={<Chat />} />
+          <Route path="settings" element={<Settings />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="notifications" element={<Notifications />} />
+        </Route>
+
+        {/* Protected route example */}
         <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
           <Route path="/donation-feed" element={<DonationFeed />} />
-          <Route path="/dashboard" element={<UserDashboard />} />
-        </Route>
-        {/* User Layout with Protected Route */}
-        <Route element={<ProtectedRoute isAuthenticated={isAuthenticated} />}>
-          <Route
-            path="/dashboard"
-            element={
-              <UserLayout>
-                <UserDashboard />
-              </UserLayout>
-            }
-          />
         </Route>
 
         {/* Admin Layout */}
-        {/* Admin Routes */}
         <Route path="/admin" element={<AdminLayout />}>
-          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="dashboard" element={<div>Admin Dashboard</div>} />
           <Route path="projects" element={<AdminProjects />} />
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />

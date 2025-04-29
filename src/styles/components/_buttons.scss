@@ -72,6 +72,22 @@
 .logout-btn:hover {
   background-color: #ff4500;
 }
+
+/* Logout Button */
+.btn-logout {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-logout:hover {
+  background-color: #dc2626;
+}
 .donate-button {
   background-color: #ff7f50; /* Button background color */
   color: white; /* Button text color */
