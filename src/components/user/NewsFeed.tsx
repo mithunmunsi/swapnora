@@ -24,6 +24,48 @@ const NewsFeed = () => {
         "Need urgent donations for the Health Camp this weekend. Please support! 🙏",
       timestamp: "5 hours ago",
     },
+    {
+      id: 1,
+      user: "Sarah",
+      content:
+        "We just completed the Clean Water project in Village X! Thank you donors! 💧❤️",
+      timestamp: "2 hours ago",
+    },
+    {
+      id: 2,
+      user: "Michael",
+      content:
+        "Need urgent donations for the Health Camp this weekend. Please support! 🙏",
+      timestamp: "5 hours ago",
+    },
+    {
+      id: 1,
+      user: "Sarah",
+      content:
+        "We just completed the Clean Water project in Village X! Thank you donors! 💧❤️",
+      timestamp: "2 hours ago",
+    },
+    {
+      id: 2,
+      user: "Michael",
+      content:
+        "Need urgent donations for the Health Camp this weekend. Please support! 🙏",
+      timestamp: "5 hours ago",
+    },
+    {
+      id: 1,
+      user: "Sarah",
+      content:
+        "We just completed the Clean Water project in Village X! Thank you donors! 💧❤️",
+      timestamp: "2 hours ago",
+    },
+    {
+      id: 2,
+      user: "Michael",
+      content:
+        "Need urgent donations for the Health Camp this weekend. Please support! 🙏",
+      timestamp: "5 hours ago",
+    },
   ]);
 
   const [newPost, setNewPost] = useState("");

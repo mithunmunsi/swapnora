@@ -4,7 +4,7 @@ import { User } from "../types/User";
 
 const mockUser: User = {
   name: "John Doe",
-  profilePic: "/profile.png",
+  profilePic: "/user.jpg",
 };
 
 interface NavbarProps {

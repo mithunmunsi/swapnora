@@ -4,9 +4,10 @@ export interface UserProfile {
   website?: string;
 }
 export interface User {
+  id: string;
   name: string;
+  email: string;
   profilePic: string;
   profile?: UserProfile;
-  email?: string;
   role?: string;
 }
