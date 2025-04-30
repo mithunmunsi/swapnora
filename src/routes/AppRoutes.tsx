@@ -59,7 +59,7 @@ const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
           <Route path="donate" element={<Donate />} />
           <Route path="chat" element={<Chat />} />
           <Route path="settings" element={<Settings />} />
-          <Route path="messages" element={<Messages />} />
+          <Route path="messages" element={<Messages user={user} />} />
           <Route path="notifications" element={<Notifications />} />
         </Route>
 
