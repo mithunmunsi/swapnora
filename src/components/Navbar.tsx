@@ -5,6 +5,8 @@ import { User } from "../types/User";
 const mockUser: User = {
   name: "John Doe",
   profilePic: "/user.jpg",
+  id: "",
+  email: "",
 };
 
 interface NavbarProps {
@@ -116,6 +118,9 @@ const Navbar = ({ user, setUser }: NavbarProps) => {
               >
                 Events
               </Link>
+            </li>
+            <li className="navbar-link" onClick={handleFakeLogin}>
+              Login
             </li>
           </ul>
         </nav>

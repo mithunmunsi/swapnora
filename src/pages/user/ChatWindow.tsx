@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-
+import socket from "../../../src/socket";
+import "./ChatWindow.css";
 interface Message {
   senderId: string;
   message: string;
@@ -24,14 +25,31 @@ const ChatWindow: React.FC<Props> = ({
   selectedConversation,
 }) => {
   const [newMessage, setNewMessage] = useState("");
+  const [chatMessages, setChatMessages] = useState<Message[]>(messages);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    socket.on("message", (msg: Message) => {
+      setChatMessages((prev) => [...prev, msg]);
+    });
+    return () => {
+      socket.off("message");
+    };
+  }, []);
+
+  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [chatMessages]);
 
   const handleSend = () => {
-    if (newMessage.trim()) {
+    if (newMessage.trim() && selectedConversation) {
+      const msg: Message = {
+        senderId: selectedConversation.id,
+        message: newMessage.trim(),
+        timestamp: new Date(),
+      };
+      socket.emit("message", msg);
+      setChatMessages((prev) => [...prev, msg]);
       onSend(newMessage.trim());
       setNewMessage("");
     }
@@ -39,67 +57,53 @@ const ChatWindow: React.FC<Props> = ({
 
   if (!selectedConversation) {
     return (
-      <div className="w-2/3 flex items-center justify-center text-gray-500 text-lg">
-        Select a conversation to start chatting
-      </div>
+      <section className="chat-window empty">
+        <p>Select a conversation to start chatting</p>
+      </section>
     );
   }
 
   return (
-    <div className="w-2/3 flex flex-col h-full">
-      {/* Header */}
-      <div className="p-4 border-b flex items-center space-x-4">
+    <section className="chat-window">
+      <header className="chat-window__header">
         <img
           src={selectedConversation.profilePic}
           alt={selectedConversation.name}
-          className="w-10 h-10 rounded-full"
+          className="chat-window__avatar"
         />
-        <h3 className="font-semibold text-lg">{selectedConversation.name}</h3>
-      </div>
+        <h2 className="chat-window__name">{selectedConversation.name}</h2>
+      </header>
 
-      {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-2 bg-gray-50">
-        {messages.map((msg, idx) => (
+      <main className="chat-window__messages">
+        {chatMessages.map((msg, idx) => (
           <div
             key={idx}
-            className={`flex ${
+            className={`chat-window__message ${
               msg.senderId === selectedConversation.id
-                ? "justify-start"
-                : "justify-end"
+                ? "chat-window__message--incoming"
+                : "chat-window__message--outgoing"
             }`}
           >
-            <div
-              className={`rounded-lg px-4 py-2 max-w-xs ${
-                msg.senderId === selectedConversation.id
-                  ? "bg-white text-gray-800"
-                  : "bg-blue-500 text-white"
-              }`}
-            >
-              {msg.message}
-            </div>
+            <span className="chat-window__bubble">{msg.message}</span>
           </div>
         ))}
         <div ref={messagesEndRef} />
-      </div>
+      </main>
 
-      {/* Input */}
-      <div className="p-4 border-t flex space-x-2">
+      <footer className="chat-window__input-area">
         <input
           type="text"
           value={newMessage}
           onChange={(e) => setNewMessage(e.target.value)}
-          className="flex-1 border rounded px-3 py-2 focus:outline-none"
+          className="chat-window__input"
           placeholder="Type your message..."
           onKeyDown={(e) => e.key === "Enter" && handleSend()}
         />
-        <button
-          onClick={handleSend}
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-        >
+        <button onClick={handleSend} className="chat-window__send-btn">
           Send
         </button>
-      </div>
-    </div>
+      </footer>
+    </section>
   );
 };
 

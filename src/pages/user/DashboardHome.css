@@ -1,0 +1,95 @@
+.dashboard__home {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: "Segoe UI", sans-serif;
+  background: #f8fafc;
+  color: #333;
+}
+
+.dashboard__header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard__title {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard__subtitle {
+  color: #555;
+}
+
+.dashboard__section {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard__donations {
+  margin-top: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.dashboard__donation-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #eee;
+  font-size: 0.95rem;
+}
+
+.dashboard__vote-item {
+  padding: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.dashboard__actions {
+  text-align: center;
+}
+
+.dashboard__buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.dashboard__btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.dashboard__btn--primary {
+  background-color: #4f46e5;
+}
+
+.dashboard__btn--primary:hover {
+  background-color: #4338ca;
+}
+
+.dashboard__btn--success {
+  background-color: #10b981;
+}
+
+.dashboard__btn--success:hover {
+  background-color: #059669;
+}
+
+.dashboard__btn--secondary {
+  background-color: #64748b;
+}
+
+.dashboard__btn--secondary:hover {
+  background-color: #475569;
+}

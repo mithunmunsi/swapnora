@@ -210,7 +210,7 @@
 }
 
 .dashboard-rightbar {
-  background-color: #a19797;
+  background-color: #fafafa;
   border-left: 1px solid #e0e0e0;
   padding: 1rem;
 }
@@ -271,59 +271,6 @@
 .dashboard-main {
   flex-grow: 1;
   padding: 2rem;
-}
-
-.dashboard-welcome h1 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.dashboard-section {
-  margin-bottom: 2rem;
-}
-
-.dashboard-section h2 {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-}
-
-/* Buttons */
-.btn {
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 600;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  transition: background-color 0.3s;
-}
-
-/* Button Variants */
-.btn-primary {
-  background-color: #3b82f6;
-  color: white;
-}
-
-.btn-primary:hover {
-  background-color: #2563eb;
-}
-
-.btn-success {
-  background-color: #10b981;
-  color: white;
-}
-
-.btn-success:hover {
-  background-color: #059669;
-}
-
-.btn-secondary {
-  background-color: #8b5cf6;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background-color: #7c3aed;
 }
 
 /* Responsive */

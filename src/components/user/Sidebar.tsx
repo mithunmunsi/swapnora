@@ -26,6 +26,7 @@ const navItems = [
 const Sidebar = ({ user, setUser }: { user: any; setUser: any }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  console.log("User profilePic:", user?.profilePic);
 
   const handleLogout = () => {
     setUser(null);

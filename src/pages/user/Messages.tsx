@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
+import { io } from "socket.io-client";
 import MessagesSidebar from "./MessagesSidebar";
 import ChatWindow from "./ChatWindow";
 
-const socket = io("http://localhost:5000");
+const socket = io("http://localhost:5000"); // ✅ Or your server's deployed URL
+socket.on("connect", () => {
+  console.log("Connected to socket:", socket.id);
+});
+
 interface Message {
   senderId: string;
   message: string;
