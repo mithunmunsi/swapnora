@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import "./Sidebar.css";
 const navItems = [
-  { name: "Home", path: "/dashboard", icon: <FaUser /> },
+  { name: "Dashboard", path: "/dashboard", icon: <FaUser /> },
   { name: "News Feed", path: "/dashboard/news-feed", icon: <FaNewspaper /> },
   { name: "Donate", path: "/dashboard/donate", icon: <FaCheese /> },
   { name: "Projects", path: "/dashboard/projects", icon: <FaPollH /> },
@@ -34,6 +34,13 @@ const Sidebar = ({ user, setUser }: { user: any; setUser: any }) => {
   };
   return (
     <aside className="sidebar">
+      {/* Brand Logo */}
+      <div className="navbar-brand">
+        <Link to="/" className="brand-link">
+          <img src="/favicon.png" alt="Swapnora Logo" className="brand-logo" />
+          <h1 className="brand-name">Swapnora</h1>
+        </Link>
+      </div>
       <div className="profile-container">
         {user && (
           <div className="profile">

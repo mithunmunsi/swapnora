@@ -1,15 +1,79 @@
 /* Layout */
 .dashboard {
-  display: flex;
+  display: grid;
+  grid-template-columns: 250px 1fr 280px;
   min-height: 100vh;
+  background-color: #f9f9f9;
+}
+
+.dashboard-sidebar {
+  background-color: #fff;
+  border-right: 1px solid #e0e0e0;
+  padding: 1rem;
+}
+
+.dashboard-rightbar {
+  background-color: #a19797;
+  border-left: 1px solid #e0e0e0;
+  padding: 1rem;
+}
+.rightbar-scroll {
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+}
+
+.rightbar-content h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.rightbar-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rightbar-content li {
+  margin-bottom: 0.75rem;
+}
+
+.rightbar-content a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.rightbar-content a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive layout for tablets and mobile */
+@media (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: 200px 1fr;
+  }
+
+  .dashboard-rightbar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sidebar {
+    display: none;
+  }
 }
 
 /* Main Content */
+
 .dashboard-main {
   flex-grow: 1;
-  background-color: #ebf4f1;
   padding: 2rem;
-  margin-left: 250px; /* Because sidebar is fixed */
 }
 
 .dashboard-welcome h1 {
@@ -24,13 +88,6 @@
 .dashboard-section h2 {
   font-size: 1.25rem;
   margin-bottom: 0.75rem;
-}
-
-/* Quick Actions */
-.quick-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
 /* Buttons */

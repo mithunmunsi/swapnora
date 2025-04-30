@@ -15,7 +15,7 @@ interface NavbarProps {
 const Navbar = ({ user, setUser }: NavbarProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
-  const navigate = useNavigate(); // ⬅️ Create navigate instance
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -99,18 +99,47 @@ const Navbar = ({ user, setUser }: NavbarProps) => {
                 Live Chat
               </Link>
             </li>
+            <li className="navbar-item">
+              <Link
+                to="/blogs"
+                className="navbar-link"
+                onClick={isMobileView ? toggleMobileMenu : undefined}
+              >
+                Blogs
+              </Link>
+            </li>
+            <li className="navbar-item">
+              <Link
+                to="/events"
+                className="navbar-link"
+                onClick={isMobileView ? toggleMobileMenu : undefined}
+              >
+                Events
+              </Link>
+            </li>
           </ul>
         </nav>
 
         {/* CTA Area */}
-        {/* Only show Fake Login button if not logged in */}
         <div className="navbar-cta">
-          {!user && (
-            <>
-              <div className="btn btn-login" onClick={handleFakeLogin}>
-                Login
-              </div>
-            </>
+          {!user ? (
+            <div className="btn btn-login" onClick={handleFakeLogin}>
+              Login
+            </div>
+          ) : (
+            <Link to="/dashboard">
+              <img
+                src={user.profilePic} // Profile picture from user
+                alt="Profile"
+                className="profile-pic"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  borderRadius: "50%",
+                  cursor: "pointer",
+                }}
+              />
+            </Link>
           )}
         </div>
       </div>

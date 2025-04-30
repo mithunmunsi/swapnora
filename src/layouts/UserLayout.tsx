@@ -1,19 +1,24 @@
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import { User } from "../types/User"; // <-- Correct import
+import { User } from "../types/User";
 
 interface UserLayoutProps {
   user: User | null;
   setUser: (user: User | null) => void;
-  children: React.ReactNode;
 }
 
-const UserLayout = ({ user, setUser, children }: UserLayoutProps) => {
+const UserLayout = ({ user, setUser }: UserLayoutProps) => {
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith("/dashboard");
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Navbar user={user} setUser={setUser} />
-      <main className="flex-grow p-4">{children}</main>
-      <Footer />
+      {!isDashboard && <Navbar user={user} setUser={setUser} />}
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      {!isDashboard && <Footer />}
     </div>
   );
 };
