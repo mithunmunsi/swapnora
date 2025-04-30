@@ -1,19 +1,24 @@
 import { useState } from "react";
+import Water from "../assets/water-well.jpg";
+import schoolSupply from "../assets/school-supply.jpg";
+import foodOrphanage from "../assets/food-orphanage.jpg";
 
 type Project = {
   id: string;
   title: string;
   description: string;
+  image: string;
   votes: number;
 };
 
-const Vote = () => {
+const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([
     {
       id: "p1",
       title: "Clean Water for Village",
       description:
         "Install 3 tube wells to provide clean water in rural areas.",
+      image: Water,
       votes: 12,
     },
     {
@@ -21,12 +26,14 @@ const Vote = () => {
       title: "School Supply Distribution",
       description:
         "Distribute notebooks and backpacks to underprivileged students.",
+      image: schoolSupply,
       votes: 19,
     },
     {
       id: "p3",
       title: "Food for Orphanage",
       description: "Provide meals for 1 month to a local orphanage.",
+      image: foodOrphanage,
       votes: 7,
     },
   ]);
@@ -46,6 +53,10 @@ const Vote = () => {
     setVotedProjectId(projectId);
   };
 
+  const handleCardClick = (projectId: string) => {
+    window.location.href = `/projects/${projectId}`; // Or use router navigation
+  };
+
   return (
     <section className="vote-section">
       <header className="vote-header">
@@ -59,7 +70,14 @@ const Vote = () => {
 
       <div className="projects-list">
         {projects.map((project) => (
-          <article key={project.id} className="project-card">
+          <article
+            key={project.id}
+            className={`project-card ${votedProjectId ? "disabled" : ""}`}
+            onClick={() => handleCardClick(project.id)}
+          >
+            <div className="project-image">
+              <img src={project.image} alt={project.title} />
+            </div>
             <header className="project-header">
               <h2 className="project-title">{project.title}</h2>
               <span className="project-votes">{project.votes} vote(s)</span>
@@ -69,7 +87,10 @@ const Vote = () => {
               className={`vote-button ${
                 votedProjectId === project.id ? "voted" : ""
               }`}
-              onClick={() => handleVote(project.id)}
+              onClick={(e) => {
+                e.stopPropagation();
+                handleVote(project.id);
+              }}
               disabled={!!votedProjectId}
             >
               {votedProjectId === project.id ? "Voted" : "Vote"}
@@ -90,4 +111,4 @@ const Vote = () => {
   );
 };
 
-export default Vote;
+export default Projects;

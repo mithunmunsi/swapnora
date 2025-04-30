@@ -85,22 +85,14 @@ const Navbar = ({ user, setUser }: NavbarProps) => {
             </li>
             <li className="navbar-item">
               <Link
-                to="/vote"
+                to="/projects"
                 className="navbar-link"
                 onClick={isMobileView ? toggleMobileMenu : undefined}
               >
-                Vote
+                Projects
               </Link>
             </li>
-            <li className="navbar-item">
-              <Link
-                to="/chat"
-                className="navbar-link"
-                onClick={isMobileView ? toggleMobileMenu : undefined}
-              >
-                Live Chat
-              </Link>
-            </li>
+
             <li className="navbar-item">
               <Link
                 to="/blogs"

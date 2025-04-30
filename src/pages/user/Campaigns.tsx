@@ -1,9 +1,9 @@
-import Projects from "../../pages/Projects";
+import FeaturedProjects from "../../sections/FeaturedProjects";
 
 const ProjectsPage = () => {
   return (
     <div className="dashboard-projects-page">
-      <Projects />
+      <FeaturedProjects />
     </div>
   );
 };

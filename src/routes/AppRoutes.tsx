@@ -9,7 +9,7 @@ import ProtectedRoute from "./ProtectedRoute";
 // Pages
 import Home from "../pages/Home";
 import Donate from "../pages/Donate";
-import Vote from "../pages/Vote";
+import Vote from "../pages/Projects";
 import Chat from "../pages/Chat";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -27,6 +27,8 @@ import AdminProjects from "../pages/admin/AdminProjects";
 import AdminUsers from "../pages/admin/AdminUsers";
 import AdminSettings from "../pages/admin/AdminSettings";
 import Projects from "../pages/user/Projects";
+import ProjectDetails from "../pages/ProjectDetails";
+import Campaigns from "../pages/user/Campaigns";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
@@ -39,8 +41,8 @@ const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
         <Route element={<UserLayout user={user} setUser={setUser} />}>
           <Route path="/" element={<Home />} />
           <Route path="/donate" element={<Donate />} />
-          <Route path="/vote" element={<Vote />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/projects" element={<Vote />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cancel" element={<Cancel />} />
@@ -54,10 +56,11 @@ const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
         >
           <Route index element={<DashboardHome />} />
           <Route path="news-feed" element={<NewsFeed />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="projects" element={<Projects />} />
           <Route path="donate" element={<Donate />} />
+          <Route path="campaigns" element={<Campaigns />} />
+          <Route path="projects" element={<Projects />} />
           <Route path="chat" element={<Chat />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="settings" element={<Settings />} />
           <Route path="messages" element={<Messages user={user} />} />
           <Route path="notifications" element={<Notifications />} />
