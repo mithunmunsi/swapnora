@@ -112,7 +112,7 @@ const Navbar = ({ user, setUser }: NavbarProps) => {
               </Link>
             </li>
             <li className="navbar-link" onClick={handleFakeLogin}>
-              Login
+              Demo
             </li>
           </ul>
         </nav>

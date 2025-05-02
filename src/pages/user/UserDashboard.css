@@ -140,6 +140,7 @@
 .message-windows {
   display: flex;
   gap: 20px;
+  min-height: 62vh;
 }
 .messages-sidebar {
   width: 33.33%;
@@ -197,23 +198,56 @@
 
 /* DASHBOARD */
 .dashboard {
-  display: grid;
-  grid-template-columns: 250px 1fr 280px;
+  display: flex;
   min-height: 100vh;
   background-color: #f9f9f9;
+  max-width: 1440px;
+  margin: 0 auto;
 }
 
+/* Left Sidebar fixed width */
 .dashboard-sidebar {
-  background-color: #fff;
+  width: 240px;
+  background-color: #f1f1f1;
   border-right: 1px solid #e0e0e0;
-  padding: 1rem;
+
+  flex-shrink: 0;
 }
 
+/* Main Content */
+.dashboard-main-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-main {
+  flex-grow: 1;
+}
+.dashboard-footer {
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+/* RIGHT SIDEBAR */
 .dashboard-rightbar {
   background-color: #fafafa;
-  border-left: 1px solid #e0e0e0;
-  padding: 1rem;
+  padding: 20px;
+  overflow-y: auto;
+  border-left: 1px solid #ddd;
+  width: 240px;
+  flex-shrink: 0;
 }
+/* ✅ Ensure layout shifts correctly */
+.dashboard.no-rightbar .dashboard-main-wrapper {
+  width: calc(100% - 240px);
+}
+
+.dashboard.with-rightbar .dashboard-main-wrapper {
+  width: calc(100% - 240px - 280px);
+}
+
+/* RILGHT SIDEBAR CONTENT CSS */
 .rightbar-scroll {
   position: sticky;
   top: 0;
@@ -264,13 +298,6 @@
   .dashboard-sidebar {
     display: none;
   }
-}
-
-/* Main Content */
-
-.dashboard-main {
-  flex-grow: 1;
-  padding: 2rem;
 }
 
 /* Responsive */

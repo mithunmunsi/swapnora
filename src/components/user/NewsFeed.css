@@ -50,6 +50,7 @@
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
 }
 
 .post-header {
@@ -57,16 +58,44 @@
   font-size: 0.95rem;
   color: #374151;
 }
-
-.timestamp {
-  font-size: 0.85rem;
-  color: #6b7280;
-  margin-left: 0.5rem;
+.post-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+.post-actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0077cc;
 }
 
 .post-content {
   font-size: 1rem;
   color: #111827;
+}
+
+.comment-section {
+  margin-top: 10px;
+}
+
+.comment-input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.comment {
+  margin-top: 6px;
+  padding-left: 10px;
+  font-size: 14px;
+}
+.timestamp {
+  font-size: 0.85rem;
+  color: #6b7280;
+  margin-left: 0.5rem;
 }
 
 /* Responsive */
