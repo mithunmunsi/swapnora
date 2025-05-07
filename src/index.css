@@ -599,6 +599,251 @@ body {
   vertical-align: middle;
 }
 
+.team-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 40px;
+}
+
+.team-category {
+  margin-bottom: 50px;
+}
+
+.team-category-title {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 8px;
+}
+
+.team-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.team-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+  flex: 1 1 200px;
+  max-width: 220px;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+}
+
+.team-photo {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+
+.team-name {
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+}
+
+.team-role {
+  font-size: 14px;
+  color: #777;
+}
+
+.team-details {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.details-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+@media (min-width: 768px) {
+  .details-card {
+    flex-direction: row;
+  }
+}
+.details-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 3px solid #f0f0f0;
+}
+
+@media (min-width: 768px) {
+  .details-photo {
+    margin-right: 30px;
+    margin-bottom: 0;
+  }
+}
+.details-info h2 {
+  font-size: 26px;
+  margin: 0;
+}
+
+.details-info h4 {
+  font-size: 18px;
+  color: #777;
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.details-info p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.social-links a {
+  display: inline-block;
+  margin-right: 15px;
+  color: #0077b5;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}
+
+.donation-history {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.donation-history h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.history-table {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 2.5fr 1.5fr 2fr 1.5fr;
+  padding: 12px 16px;
+  align-items: center;
+}
+
+.table-header {
+  background: #f7f7f7;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+.table-row:nth-child(even) {
+  background: #fafafa;
+}
+
+.status {
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.status.completed {
+  background: #e6f7e6;
+  color: #1a7e1a;
+}
+
+.status.pending {
+  background: #fffbe6;
+  color: #a87900;
+}
+
+.status.failed {
+  background: #fbeaea;
+  color: #c02d2d;
+}
+
+.make-donation {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.make-donation h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.donation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.donation-form label {
+  font-weight: 600;
+}
+
+.donation-form select,
+.donation-form input[type=number] {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.payment-options {
+  display: flex;
+  gap: 16px;
+}
+
+.payment-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.donation-form button {
+  background-color: #1e88e5;
+  color: white;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.donation-form button:hover {
+  background-color: #1565c0;
+}
+
+.donation-message {
+  margin-top: 16px;
+  font-weight: 500;
+  color: green;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -1280,6 +1525,58 @@ body {
   text-align: center;
 }
 
+.aboutus {
+  padding: 2rem;
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.aboutus-container {
+  max-width: 800px;
+  margin: auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.aboutus-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.aboutus-container .intro {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.aboutus-mission,
+.aboutus-vision,
+.aboutus-values {
+  margin-bottom: 30px;
+}
+
+.aboutus-mission h2,
+.aboutus-vision h2,
+.aboutus-values h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.aboutus-values ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.aboutus-values li {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.8;
+}
+
 /* Chat Layout */
 .chat {
   min-height: 100vh;
@@ -1446,6 +1743,60 @@ body {
 
 .cancel-content button:hover {
   background-color: #4338ca;
+}
+
+.contact-page {
+  padding: 2rem;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.contact-container {
+  max-width: 600px;
+  background: #fff;
+  padding: 2rem;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.contact-container h1 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.contact-form label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 500;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.contact-form button {
+  margin-top: 1.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.contact-form button:hover {
+  background-color: #005bb5;
 }
 
 /* DONAE PAGE */
@@ -1832,6 +2183,76 @@ body {
   font-size: 1.8rem;
 }
 
+.privacy-policy {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.privacy-policy .container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.privacy-policy h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.privacy-policy h2 {
+  font-size: 1.25rem;
+  margin-top: 2rem;
+}
+
+.privacy-policy ul {
+  margin-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.privacy-policy p {
+  margin: 0.5rem 0;
+}
+
+.terms-page {
+  padding: 2rem;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.terms-page .container {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08);
+}
+
+.terms-page h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.terms-page h2 {
+  font-size: 1.3rem;
+  margin-top: 2rem;
+}
+
+.terms-page ul {
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.terms-page p {
+  margin: 0.5rem 0;
+}
+
 .register {
   background-color: #f7f7f7;
   padding: 2rem 0 8rem 0;
@@ -2125,4 +2546,172 @@ body {
   font-size: 1.125rem;
   color: #10b981;
   font-weight: 600;
+}
+
+.project-gallery {
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.project-gallery h2 {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.project-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.project-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 16px;
+  flex: 1;
+}
+
+.card-body h3 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.card-body p {
+  font-size: 14px;
+  color: #555;
+}
+
+.status {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.status.active {
+  background-color: #e3f5e1;
+  color: #2e7d32;
+}
+
+.status.completed {
+  background-color: #f4e4e4;
+  color: #b71c1c;
+}
+
+.project-gallery-details {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.nav-button.prev {
+  left: 10px;
+}
+
+.nav-button.next {
+  right: 10px;
+}
+
+.project-info {
+  text-align: left;
+}
+
+.project-title {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.project-meta {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.project-description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.donate-button,
+.share-button {
+  padding: 10px 20px;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+}
+
+.donate-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.share-button {
+  background-color: #007bff;
+  color: white;
 }

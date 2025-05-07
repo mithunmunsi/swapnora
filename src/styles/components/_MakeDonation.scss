@@ -1,0 +1,59 @@
+.make-donation {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.make-donation h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.donation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.donation-form label {
+  font-weight: 600;
+}
+
+.donation-form select,
+.donation-form input[type="number"] {
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.payment-options {
+  display: flex;
+  gap: 16px;
+}
+
+.payment-options label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.donation-form button {
+  background-color: #1e88e5;
+  color: white;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.donation-form button:hover {
+  background-color: #1565c0;
+}
+
+.donation-message {
+  margin-top: 16px;
+  font-weight: 500;
+  color: green;
+}

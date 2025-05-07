@@ -1,11 +1,10 @@
 /* Not Found Page Styles */
 .notfound-container {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f9fafb;
-  padding: 2rem;
+  padding: 3.76rem;
 }
 
 .notfound-content {

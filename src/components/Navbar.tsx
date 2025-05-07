@@ -111,8 +111,14 @@ const Navbar = ({ user, setUser }: NavbarProps) => {
                 Events
               </Link>
             </li>
-            <li className="navbar-link" onClick={handleFakeLogin}>
-              Demo
+            <li className="navbar-item">
+              <Link
+                to="/stories"
+                className="navbar-link"
+                onClick={isMobileView ? toggleMobileMenu : undefined}
+              >
+                Stories
+              </Link>
             </li>
           </ul>
         </nav>

@@ -1,0 +1,51 @@
+.aboutus {
+  padding: 2rem;
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.aboutus-container {
+  max-width: 800px;
+  margin: auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+}
+
+.aboutus-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.aboutus-container .intro {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.aboutus-mission,
+.aboutus-vision,
+.aboutus-values {
+  margin-bottom: 30px;
+}
+
+.aboutus-mission h2,
+.aboutus-vision h2,
+.aboutus-values h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.aboutus-values ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.aboutus-values li {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.8;
+}

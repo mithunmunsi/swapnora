@@ -54,7 +54,7 @@ const DashboardHome = () => {
         <h2>🚀 Quick Actions</h2>
         <div className="dashboard__buttons">
           <Link
-            to="/dashboard/donate"
+            to="/donate-now"
             className="dashboard__btn dashboard__btn--primary"
           >
             💖 Donate Again
@@ -70,6 +70,12 @@ const DashboardHome = () => {
             className="dashboard__btn dashboard__btn--secondary"
           >
             💬 Join Chat
+          </Link>
+          <Link
+            to="/dashboard/donations"
+            className="dashboard__btn dashboard__btn--secondary"
+          >
+            Donations
           </Link>
         </div>
       </section>

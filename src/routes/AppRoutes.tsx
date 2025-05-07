@@ -29,6 +29,15 @@ import AdminSettings from "../pages/admin/AdminSettings";
 import Projects from "../pages/user/Projects";
 import ProjectDetails from "../pages/ProjectDetails";
 import Campaigns from "../pages/user/Campaigns";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import AboutUs from "../pages/AboutUs";
+import ContactUs from "../pages/ContactUs";
+import TeamDetails from "../components/TeamDetails";
+import TeamShowcase from "../components/TeamShowcase";
+import DonationHistory from "../pages/user/DonationHistory";
+import MakeDonation from "../components/MakeDonation";
+import ProjectGallery from "../pages/ProjectGallery";
+import ProjectGalleryDetails from "../pages/ProjectGalleryDetails";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
@@ -40,13 +49,23 @@ const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
         {/* Public routes with UserLayout */}
         <Route element={<UserLayout user={user} setUser={setUser} />}>
           <Route path="/" element={<Home />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/team" element={<TeamShowcase />} />
+          <Route path="/team/:name" element={<TeamDetails />} />
           <Route path="/donate" element={<Donate />} />
+          <Route path="/donate-now" element={<MakeDonation />} />
           <Route path="/projects" element={<Vote />} />
           <Route path="/projects/:id" element={<ProjectDetails />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/cancel" element={<Cancel />} />
           <Route path="/success" element={<Success />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/stories" element={<ProjectGallery />} />
+          <Route path="/stories/:id" element={<ProjectGalleryDetails />} />
+
+          <Route path="*" element={<NotFound />} />
         </Route>
 
         {/* Dashboard routes */}
@@ -64,6 +83,7 @@ const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
           <Route path="settings" element={<Settings />} />
           <Route path="messages" element={<Messages user={user} />} />
           <Route path="notifications" element={<Notifications />} />
+          <Route path="donations" element={<DonationHistory />} />
         </Route>
 
         {/* Protected route example */}
@@ -78,8 +98,6 @@ const AppRoutes = ({ user, setUser }: { user: any; setUser: any }) => {
           <Route path="users" element={<AdminUsers />} />
           <Route path="settings" element={<AdminSettings />} />
         </Route>
-
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>
   );

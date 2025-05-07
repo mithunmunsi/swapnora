@@ -97,6 +97,21 @@ const Settings = () => {
 
           <div className="form-group">
             <label htmlFor="password" className="form-label">
+              Current password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              value={formData.password}
+              onChange={handleChange}
+              className="form-input"
+              placeholder="********"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">
               New Password
             </label>
             <input
@@ -106,6 +121,7 @@ const Settings = () => {
               value={formData.password}
               onChange={handleChange}
               className="form-input"
+              placeholder="********"
             />
           </div>
 
@@ -120,6 +136,7 @@ const Settings = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               className="form-input"
+              placeholder="********"
             />
           </div>
 

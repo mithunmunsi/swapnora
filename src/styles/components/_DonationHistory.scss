@@ -1,0 +1,57 @@
+.donation-history {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.donation-history h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.history-table {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 15px;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 2.5fr 1.5fr 2fr 1.5fr;
+  padding: 12px 16px;
+  align-items: center;
+}
+
+.table-header {
+  background: #f7f7f7;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+}
+
+.table-row:nth-child(even) {
+  background: #fafafa;
+}
+
+.status {
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.status.completed {
+  background: #e6f7e6;
+  color: #1a7e1a;
+}
+
+.status.pending {
+  background: #fffbe6;
+  color: #a87900;
+}
+
+.status.failed {
+  background: #fbeaea;
+  color: #c02d2d;
+}
