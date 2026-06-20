@@ -26,6 +26,7 @@ interface Message {
   content: string;
   createdAt: string;
   isRead: boolean;
+  deliveryStatus?: "sent" | "delivered" | "read";
 
   sender: {
     _id: string;
@@ -141,14 +142,27 @@ const Messages = () => {
       fetchConversations();
     });
 
+    socket.on("message_delivered", ({ messageId }) => {
+      setMessages((prev) =>
+        prev.map((message) =>
+          String(message._id) === String(messageId)
+            ? {
+                ...message,
+                deliveryStatus: "delivered",
+              }
+            : message,
+        ),
+      );
+    });
+
     socket.on("messages_read", (data) => {
       setMessages((prev) =>
         prev.map((message) =>
           message._id === data.messageId
             ? {
                 ...message,
-
                 isRead: true,
+                deliveryStatus: "read",
               }
             : message,
         ),
@@ -206,6 +220,7 @@ const Messages = () => {
       socket.off("connect_error");
       socket.off("disconnect");
       socket.off("new_message");
+      socket.off("message_delivered");
       socket.off("messages_read");
       socket.off("user_typing");
       socket.off("user_stop_typing");
@@ -251,6 +266,13 @@ const Messages = () => {
         receiverId: receiver?._id,
         content: newMessage,
       });
+
+      // console.log("SENT MESSAGE ID:", response.data.message._id);
+      console.log(
+        "API RESPONSE STATUS:",
+
+        response.data.message.deliveryStatus,
+      );
 
       setMessages((prev) => [...prev, response.data.message]);
 
@@ -397,7 +419,11 @@ const Messages = () => {
                   <div className="message-content">{message.content}</div>
                   {message.sender._id === user?._id && (
                     <div className="read-status">
-                      {message.isRead ? "✓✓ Read" : "✓ Sent"}
+                      {message.deliveryStatus === "read"
+                        ? "✓✓ Read"
+                        : message.deliveryStatus === "delivered"
+                          ? "✓✓ Delivered"
+                          : "✓ Sent"}
                     </div>
                   )}
 
