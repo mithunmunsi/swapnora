@@ -1,0 +1,159 @@
+.admin-fundraising {
+  padding: 24px;
+}
+
+.admin-fundraising h1 {
+  margin-bottom: 24px;
+
+  font-size: 2rem;
+
+  color: #111827;
+}
+
+.admin-fundraising table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.admin-fundraising thead {
+  background: #f3f4f6;
+}
+
+.admin-fundraising th {
+  text-align: left;
+
+  padding: 16px;
+
+  font-weight: 700;
+
+  color: #374151;
+
+  font-size: 0.95rem;
+}
+
+.admin-fundraising td {
+  padding: 16px;
+
+  border-top: 1px solid #e5e7eb;
+
+  color: #4b5563;
+}
+
+.admin-fundraising tbody tr {
+  transition: background 0.2s ease;
+}
+
+.admin-fundraising tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* Status Badges */
+
+.funding-status {
+  display: inline-block;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 0.8rem;
+
+  font-weight: 600;
+
+  text-transform: capitalize;
+}
+
+.funding-status.voting {
+  background: #fef3c7;
+
+  color: #92400e;
+}
+
+.funding-status.selected {
+  background: #dbeafe;
+
+  color: #1d4ed8;
+}
+
+.funding-status.funding {
+  background: #dcfce7;
+
+  color: #166534;
+}
+
+.funding-status.completed {
+  background: #ede9fe;
+
+  color: #6d28d9;
+}
+
+/* Progress Cell */
+
+.progress-cell {
+  min-width: 180px;
+}
+
+.progress-bar {
+  width: 100%;
+
+  height: 10px;
+
+  background: #e5e7eb;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  margin-bottom: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+
+  background: #10b981;
+
+  border-radius: 999px;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
+  color: #10b981;
+}
+
+/* Amount Styling */
+
+.amount-raised {
+  font-weight: 700;
+
+  color: #059669;
+}
+
+.amount-goal {
+  font-weight: 600;
+
+  color: #6b7280;
+}
+
+/* Mobile */
+
+@media (max-width: 1024px) {
+  .admin-fundraising {
+    overflow-x: auto;
+  }
+
+  .admin-fundraising table {
+    min-width: 900px;
+  }
+}

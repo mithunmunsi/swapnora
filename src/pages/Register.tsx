@@ -1,66 +1,108 @@
 // src/pages/Register.tsx
+
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../api";
+import { Link, useNavigate } from "react-router-dom";
+
+import api from "../services/api";
+import { useAuth } from "../hooks/useAuth";
 
 const Register: React.FC = () => {
-  const [name, setName] = useState("");
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
+
+  const [firstName, setFirstName] = useState("");
+
+  const [lastName, setLastName] = useState("");
+
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+
   const [password, setPassword] = useState("");
+
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const [error, setError] = useState<string | null>(null);
 
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    setError(null);
 
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
     }
 
+    setLoading(true);
+
     try {
-      const res = await api.post("/api/v1/auth/register", {
-        name,
+      const response = await api.post("auth/register", {
+        firstName,
+        lastName,
         email,
-        username,
         password,
-        confirmPassword,
       });
-      console.log("Ragistration is successfull", res.data);
-      navigate("/login");
-      console.log("API Base URL:", import.meta.env.VITE_DEV_API_URL);
-    } catch (err) {
-      console.error(err);
-      setError("Registration is failed");
+
+      const { token, user } = response.data;
+
+      login(token, user);
+
+      navigate("/dashboard");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      setError(error?.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <main className="register">
       <div className="register-form">
-        <h2 className="register-heading mb-lg">Create your account!</h2>
+        <h2 className="register-heading mb-lg">Create your account</h2>
+
+        {error && <p className="error-message">{error}</p>}
+
         <form className="form form--signup" onSubmit={handleSubmit}>
           <div className="form__group">
-            <label className="form__label" htmlFor="name">
-              Your name
+            <label className="form__label" htmlFor="firstName">
+              First Name
             </label>
+
             <input
               className="form__input"
-              id="name"
+              id="firstName"
               type="text"
-              placeholder="Full Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              placeholder="John"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               required
             />
           </div>
+
+          <div className="form__group">
+            <label className="form__label" htmlFor="lastName">
+              Last Name
+            </label>
+
+            <input
+              className="form__input"
+              id="lastName"
+              type="text"
+              placeholder="Doe"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              required
+            />
+          </div>
+
           <div className="form__group">
             <label className="form__label" htmlFor="email">
-              Email address
+              Email Address
             </label>
+
             <input
               className="form__input"
               id="email"
@@ -71,24 +113,12 @@ const Register: React.FC = () => {
               required
             />
           </div>
+
           <div className="form__group">
-            <label className="form__label" htmlFor="username">
-              Username
-            </label>
-            <input
-              className="form__input"
-              id="username"
-              type="text"
-              placeholder="Your Username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form__group mb-md">
             <label className="form__label" htmlFor="password">
               Password
             </label>
+
             <input
               className="form__input"
               id="password"
@@ -96,33 +126,35 @@ const Register: React.FC = () => {
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              minLength={6}
               required
-              minLength={8}
             />
           </div>
+
           <div className="form__group mb-md">
-            <label className="form__label" htmlFor="passwordConfirm">
-              Confirm password
+            <label className="form__label" htmlFor="confirmPassword">
+              Confirm Password
             </label>
+
             <input
               className="form__input"
-              id="passwordConfirm"
+              id="confirmPassword"
               type="password"
               placeholder="••••••••"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              minLength={6}
               required
-              minLength={8}
             />
           </div>
-          <div className="form__group">
-            {error && <p className="error-message">{error}</p>}
 
-            <button className="btn btn--green" type="submit">
-              Sign up
+          <div className="form__group">
+            <button className="btn btn--green" type="submit" disabled={loading}>
+              {loading ? "Creating Account..." : "Sign Up"}
             </button>
+
             <p className="create-account">
-              Already have an account? <a href="/login">Login</a>
+              Already have an account? <Link to="/login">Login</Link>
             </p>
           </div>
         </form>

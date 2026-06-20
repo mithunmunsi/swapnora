@@ -4,10 +4,23 @@ export interface UserProfile {
   website?: string;
 }
 export interface User {
-  id: string;
-  name: string;
+  _id: string;
+
+  firstName: string;
+
+  lastName: string;
+
   email: string;
-  profilePic: string;
-  profile?: UserProfile;
-  role?: string;
+
+  avatar?: string;
+
+  votingCredits: number;
+
+  role: "user" | "admin";
+
+  status: "active" | "suspended" | "disabled";
+
+  isVerified: boolean;
+
+  createdAt: string;
 }

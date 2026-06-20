@@ -29,10 +29,10 @@
     linear,
     left top,
     right top,
-    from(#7dd56f),
+    from(#196b0c),
     to(#28b487)
   );
-  background-image: linear-gradient(to right, #7dd56f, #28b487);
+  background-image: linear-gradient(to right, #1d6e11, #28b487);
   -webkit-background-clip: text;
 }
 
@@ -44,10 +44,6 @@
 }
 
 .error-message {
-  color: rgb(255, 0, 0);
+  color: rgb(182, 15, 15);
   font-size: 1.5rem;
-}
-.create-account {
-  margin-top: 20px;
-  font-size: 1.8rem;
 }

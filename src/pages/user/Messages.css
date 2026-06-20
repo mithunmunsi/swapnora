@@ -1,0 +1,285 @@
+.messages-page {
+  display: flex;
+  height: 80vh;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.messages-sidebar {
+  width: 320px;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+.messages-sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.messages-sidebar-header h2 {
+  margin: 0;
+}
+
+.conversation-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.conversation-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.conversation-item:hover {
+  background: #f8fafc;
+}
+
+.conversation-item.active {
+  background: #eff6ff;
+}
+
+.conversation-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.conversation-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.conversation-info {
+  flex: 1;
+}
+
+.conversation-info h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.conversation-info p {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+.conversation-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+}
+
+.conversation-time {
+  font-size: 12px;
+
+  color: #94a3b8;
+}
+
+.conversation-preview {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color: #64748b;
+
+  font-size: 14px;
+}
+.message-sender {
+  font-size: 12px;
+
+  font-weight: 600;
+
+  margin-bottom: 4px;
+
+  opacity: 0.8;
+}
+.messages-chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.no-conversation {
+  margin: auto;
+  text-align: center;
+  color: #6b7280;
+}
+.chat-header {
+  padding: 16px 20px;
+
+  border-bottom: 1px solid #e5e7eb;
+
+  background: white;
+
+  position: sticky;
+
+  top: 0;
+
+  z-index: 10;
+}
+
+.chat-header-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.chat-header-info > div:last-child {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.chat-header-avatar {
+  width: 44px;
+
+  height: 44px;
+
+  border-radius: 50%;
+
+  background: #2563eb;
+
+  color: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-weight: 700;
+
+  overflow: hidden;
+}
+
+.chat-header-avatar img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.chat-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chat-header p {
+  margin: 0;
+  font-size: 13px;
+}
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  background: #f8fafc;
+}
+
+.message-bubble {
+  max-width: 70%;
+  background: white;
+  padding: 12px 16px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.message-bubble.own {
+  margin-left: auto;
+  background: #2563eb;
+  color: white;
+}
+
+.message-time {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 6px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+  background: white;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+}
+
+.chat-input button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: #1d4ed8;
+}
+
+.messages-loading,
+.empty-state {
+  padding: 20px;
+  text-align: center;
+  color: #6b7280;
+}
+
+.read-status {
+  font-size: 11px;
+
+  margin-top: 4px;
+
+  opacity: 0.7;
+
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .messages-page {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .messages-sidebar {
+    width: 100%;
+    max-height: 250px;
+  }
+
+  .messages-chat {
+    min-height: 500px;
+  }
+}

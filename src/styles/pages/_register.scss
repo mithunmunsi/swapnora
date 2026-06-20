@@ -32,7 +32,7 @@
     from(#7dd56f),
     to(#28b487)
   );
-  background-image: linear-gradient(to right, #7dd56f, #28b487);
+  background-image: linear-gradient(to right, #1d6e11, #28b487);
   -webkit-background-clip: text;
 }
 
@@ -105,5 +105,9 @@
 }
 .create-account {
   margin-top: 20px;
-  font-size: 1.8rem;
+  font-size: 1rem;
+}
+.create-account a {
+  text-decoration: none;
+  color: #196b0c;
 }

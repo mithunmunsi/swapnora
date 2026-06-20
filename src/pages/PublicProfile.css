@@ -1,0 +1,228 @@
+.public-profile {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 24px;
+}
+
+/* COVER */
+
+.public-cover {
+  height: 320px;
+
+  overflow: hidden;
+
+  border-radius: 24px;
+
+  background: #e5e7eb;
+
+  margin-bottom: 90px;
+}
+
+.public-cover img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.public-cover-placeholder {
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #6b7280;
+
+  font-size: 1rem;
+}
+
+/* HEADER */
+
+.public-top {
+  display: flex;
+
+  gap: 32px;
+
+  align-items: flex-end;
+
+  margin-top: -110px;
+
+  margin-bottom: 32px;
+}
+
+.public-avatar-image,
+.public-avatar {
+  width: 190px;
+
+  height: 190px;
+
+  border-radius: 50%;
+
+  border: 6px solid white;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-size: 4rem;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  object-fit: cover;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.public-info {
+  flex: 1;
+}
+
+.public-info h1 {
+  margin-bottom: 8px;
+
+  font-size: 2rem;
+}
+
+.public-role {
+  display: inline-block;
+
+  background: #dbeafe;
+
+  color: #1d4ed8;
+
+  padding: 6px 14px;
+
+  border-radius: 999px;
+
+  margin-bottom: 16px;
+
+  font-weight: 600;
+}
+
+.public-bio {
+  color: #4b5563;
+
+  line-height: 1.7;
+
+  margin-bottom: 12px;
+}
+
+.public-info a {
+  color: #2563eb;
+
+  text-decoration: none;
+}
+
+.public-info a:hover {
+  text-decoration: underline;
+}
+
+/* ACTIONS */
+
+.public-actions {
+  margin-top: 20px;
+}
+
+.message-user-btn {
+  padding: 12px 20px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background: #2563eb;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.message-user-btn:hover {
+  background: #1d4ed8;
+
+  transform: translateY(-2px);
+}
+
+/* CARD */
+
+.public-card {
+  background: white;
+
+  padding: 28px;
+
+  border-radius: 20px;
+
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+.public-card h2 {
+  margin-bottom: 20px;
+}
+
+.public-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  gap: 20px;
+}
+
+/* STATES */
+
+.public-profile-loading,
+.public-profile-error {
+  text-align: center;
+
+  padding: 60px;
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .public-cover {
+    height: 220px;
+  }
+
+  .public-top {
+    flex-direction: column;
+
+    align-items: center;
+
+    text-align: center;
+
+    margin-top: -80px;
+  }
+
+  .public-avatar-image,
+  .public-avatar {
+    width: 150px;
+
+    height: 150px;
+
+    font-size: 3rem;
+  }
+
+  .public-info h1 {
+    font-size: 1.7rem;
+  }
+
+  .public-actions {
+    display: flex;
+
+    justify-content: center;
+  }
+}

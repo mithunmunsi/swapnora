@@ -1,4 +1,4 @@
-const PayPalButton = () => {
+/* const PayPalButton = () => {
   return (
     <div className="PayPal">
       <form
@@ -30,3 +30,4 @@ const PayPalButton = () => {
 };
 
 export default PayPalButton;
+ */

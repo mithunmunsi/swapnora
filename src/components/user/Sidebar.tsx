@@ -1,71 +1,207 @@
+import socket from "../../socket";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaCog,
   FaEnvelope,
-  FaBell,
   FaNewspaper,
-  FaCheese,
-  FaPollH,
-  FaPaperPlane,
+  FaDonate,
+  FaProjectDiagram,
+  FaComments,
+  FaTachometerAlt,
 } from "react-icons/fa";
+
+import api from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
+
 import "./Sidebar.css";
+
 const navItems = [
-  { name: "Dashboard", path: "/dashboard", icon: <FaUser /> },
-  { name: "News Feed", path: "/dashboard/news-feed", icon: <FaNewspaper /> },
-  { name: "Donate", path: "/dashboard/donate", icon: <FaCheese /> },
-  { name: "Campaigns", path: "/dashboard/campaigns", icon: <FaPollH /> },
-  { name: "Projects", path: "/dashboard/projects", icon: <FaCheese /> },
-  { name: "Join Chat", path: "/dashboard/chat", icon: <FaPaperPlane /> },
-  { name: "Messages", path: "/dashboard/messages", icon: <FaEnvelope /> },
-  { name: "Notifications", path: "/dashboard/notifications", icon: <FaBell /> },
-  { name: "Profile", path: "/dashboard/profile", icon: <FaUser /> },
-  { name: "Settings", path: "/dashboard/settings", icon: <FaCog /> },
+  {
+    name: "Dashboard",
+    path: "/dashboard",
+    icon: <FaTachometerAlt />,
+  },
+  {
+    name: "News Feed",
+    path: "/dashboard/news-feed",
+    icon: <FaNewspaper />,
+  },
+  {
+    name: "Donate Now",
+    path: "/dashboard/donate",
+    icon: <FaDonate />,
+  },
+  {
+    name: "Fundraising",
+    path: "/dashboard/fundraising",
+    icon: <FaProjectDiagram />,
+  },
+  {
+    name: "Projects",
+    path: "/dashboard/projects",
+    icon: <FaProjectDiagram />,
+  },
+  {
+    name: "Stories",
+    path: "/dashboard/completed-projects",
+    icon: <FaProjectDiagram />,
+  },
+  {
+    name: "Messages",
+    path: "/dashboard/messages",
+    icon: <FaComments />,
+  },
+  {
+    name: "Profile",
+    path: "/dashboard/profile",
+    icon: <FaUser />,
+  },
+  {
+    name: "Settings",
+    path: "/dashboard/settings",
+    icon: <FaCog />,
+  },
+  {
+    name: "Donation History",
+    path: "/dashboard/donations",
+    icon: <FaEnvelope />,
+  },
 ];
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Sidebar = ({ user, setUser }: { user: any; setUser: any }) => {
+const Sidebar = () => {
   const location = useLocation();
+
   const navigate = useNavigate();
-  console.log("User profilePic:", user?.profilePic);
+
+  const { user, logout } = useAuth();
+
+  const [unreadCount, setUnreadCount] = useState(0);
+
+  const fetchUnreadCount = useCallback(async () => {
+    try {
+      const response = await api.get("/messages/unread-count");
+
+      setUnreadCount(response.data.count);
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchUnreadCount();
+  }, [fetchUnreadCount]);
+
+  useEffect(() => {
+    socket.on("unread_count_updated", (count) => {
+      console.log(
+        "Sidebar received unread count:",
+
+        count,
+      );
+
+      setUnreadCount(count);
+    });
+
+    return () => {
+      socket.off("unread_count_updated");
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleMessagesRead = () => {
+      fetchUnreadCount();
+    };
+
+    window.addEventListener("messages-read", handleMessagesRead);
+
+    return () => {
+      window.removeEventListener("messages-read", handleMessagesRead);
+    };
+  }, [fetchUnreadCount]);
 
   const handleLogout = () => {
-    setUser(null);
-    localStorage.removeItem("token"); // Clear token if you store auth
+    logout();
+
     navigate("/");
   };
+
   return (
     <aside className="sidebar">
-      {/* Brand Logo */}
-      <div className="navbar-brand">
-        <Link to="/" className="brand-link">
-          <img src="/favicon.png" alt="Swapnora Logo" className="brand-logo" />
-          <h1 className="brand-name">Swapnora</h1>
+      {/* Logo */}
+
+      <div className="sidebar-brand">
+        <Link to="/" className="sidebar-brand-link">
+          <img
+            src="/favicon.png"
+            alt="Swapnora Logo"
+            className="sidebar-brand-logo"
+          />
+
+          <h1 className="sidebar-brand-name">Swapnora</h1>
         </Link>
       </div>
-      <div className="profile-container">
-        {user && (
+
+      {/* User */}
+
+      {user && (
+        <div className="profile-container">
           <div className="profile">
-            <img src={user.profilePic} alt="Profile" className="profile-img" />
-            <span>{user.name}</span>
+            <div className="profile-avatar">
+              {user.avatar ? (
+                <img
+                  src={user.avatar}
+                  alt={user.firstName}
+                  className="sidebar-avatar-image"
+                />
+              ) : (
+                user.firstName?.charAt(0).toUpperCase()
+              )}
+            </div>
+
+            <div className="profile-info">
+              <h4>
+                {user.firstName} {user.lastName}
+              </h4>
+
+              <span>Credits: {user.votingCredits}</span>
+            </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
+
+      {/* Navigation */}
+
       <ul className="sidebar-menu">
         {navItems.map((item) => (
           <li
             key={item.path}
             className={`sidebar-item ${
-              location.pathname === item.path ? "active" : ""
+              item.path === "/dashboard"
+                ? location.pathname === "/dashboard"
+                  ? "active"
+                  : ""
+                : location.pathname.startsWith(item.path)
+                  ? "active"
+                  : ""
             }`}
           >
             <Link to={item.path} className="sidebar-link">
               <span className="sidebar-icon">{item.icon}</span>
+
               <span className="sidebar-text">{item.name}</span>
+
+              {item.path === "/dashboard/messages" && unreadCount > 0 && (
+                <span className="message-badge">{unreadCount}</span>
+              )}
             </Link>
           </li>
         ))}
       </ul>
+
+      {/* Logout */}
+
       <button onClick={handleLogout} className="btn btn-logout">
         Logout
       </button>

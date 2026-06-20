@@ -1,81 +1,278 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
+import api from "../../services/api";
+
 import "./DashboardHome.css";
 
-const mockUser = {
-  name: "John Doe",
-  totalDonated: 125,
-  votes: ["Build Clean Water Wells", "Educational Support"],
-  recentDonations: [
-    { project: "Tree Planting", amount: 50, date: "2025-04-10" },
-    { project: "Flood Relief", amount: 75, date: "2025-03-21" },
-  ],
-};
+interface DashboardData {
+  profile: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+
+  votingCredits: number;
+
+  totalDonated: number;
+
+  totalVotesUsed: number;
+
+  totalDonations: number;
+
+  totalVoteTransactions: number;
+
+  supportedProjects: number;
+
+  recentDonations: {
+    _id: string;
+    amount: number;
+    donationType: "general" | "project";
+    createdAt: string;
+
+    project?: {
+      title: string;
+      category: string;
+      fundingStatus: string;
+    };
+  }[];
+
+  recentVotes: {
+    _id: string;
+    creditsUsed: number;
+
+    project: {
+      title: string;
+    };
+  }[];
+}
 
 const DashboardHome = () => {
+  const [dashboard, setDashboard] = useState<DashboardData | null>(null);
+
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchDashboard = async () => {
+      try {
+        const response = await api.get("/users/dashboard");
+
+        setDashboard(response.data.dashboard);
+      } catch (error) {
+        console.error(error);
+
+        setError("Failed to load dashboard");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDashboard();
+  }, []);
+
+  if (loading) {
+    return <div className="dashboard-loading">Loading dashboard...</div>;
+  }
+
+  if (error) {
+    return <div className="dashboard-error">{error}</div>;
+  }
+
+  if (!dashboard) {
+    return null;
+  }
+
+  const impactScore = Math.min(
+    dashboard.totalDonated + dashboard.totalVotesUsed,
+    1000,
+  );
+
+  const communityRank =
+    dashboard.totalDonated >= 1000
+      ? "🏆 Champion"
+      : dashboard.totalDonated >= 500
+        ? "🥇 Advocate"
+        : dashboard.totalDonated >= 100
+          ? "🥈 Supporter"
+          : "🥉 New Member";
+
   return (
     <section className="dashboard__home">
-      <header className="dashboard__header">
-        <h1 className="dashboard__title">👋 Welcome, {mockUser.name}!</h1>
-        <p className="dashboard__subtitle">Here's your impact summary</p>
+      {/* Header */}
+
+      <header className="dashboard-hero">
+        <div>
+          <h1>
+            Welcome back, {dashboard.profile.firstName}
+            👋
+          </h1>
+
+          <p>
+            Thank you for helping communities grow through donations and voting.
+          </p>
+        </div>
+
+        <div className="dashboard-rank">{communityRank}</div>
       </header>
 
-      {/* Donation Summary */}
-      <section className="dashboard__section dashboard__donation-summary">
-        <h2>💰 Donation Summary</h2>
-        <p>
-          You’ve donated <strong>${mockUser.totalDonated}</strong> so far.
-          Amazing work! 🙌
-        </p>
-        <ul className="dashboard__donations">
-          {mockUser.recentDonations.map((donation, index) => (
-            <li key={index} className="dashboard__donation-item">
-              <span>{donation.project}</span>
-              <span>${donation.amount}</span>
-              <span>{donation.date}</span>
-            </li>
-          ))}
-        </ul>
+      {/* Stats */}
+
+      <section className="dashboard__stats">
+        <div className="dashboard-stat-card">
+          <span className="stat-icon">💰</span>
+
+          <h3>Total Donated</h3>
+
+          <p>€{dashboard.totalDonated.toLocaleString()}</p>
+        </div>
+
+        <div className="dashboard-stat-card">
+          <span className="stat-icon">🪙</span>
+
+          <h3>Voting Credits</h3>
+
+          <p>{dashboard.votingCredits}</p>
+        </div>
+
+        <div className="dashboard-stat-card">
+          <span className="stat-icon">🗳</span>
+
+          <h3>Votes Used</h3>
+
+          <p>{dashboard.totalVotesUsed}</p>
+        </div>
+
+        <div className="dashboard-stat-card">
+          <span className="stat-icon">❤️</span>
+
+          <h3>Supported Projects</h3>
+
+          <p>{dashboard.supportedProjects}</p>
+        </div>
       </section>
 
-      {/* Voting Summary */}
-      <section className="dashboard__section dashboard__votes">
-        <h2>🗳️ Your Votes</h2>
-        <ul>
-          {mockUser.votes.map((project, index) => (
-            <li key={index} className="dashboard__vote-item">
-              ✅ {project}
-            </li>
-          ))}
-        </ul>
+      <section className="dashboard-impact">
+        <div className="impact-card">
+          <h3>🌍 Impact Score</h3>
+
+          <div className="impact-progress">
+            <div
+              className="impact-fill"
+              style={{
+                width: `${impactScore}%`,
+              }}
+            />
+          </div>
+
+          <p>{impactScore.toFixed(0)}% Community Impact</p>
+        </div>
+
+        <div className="impact-card">
+          <h3>🎯 Giving Goal</h3>
+
+          <p className="goal-value">
+            €{dashboard.totalDonated}
+            {" / "}
+            €1000
+          </p>
+
+          <div className="impact-progress">
+            <div
+              className="impact-fill"
+              style={{
+                width: `${Math.min(
+                  (dashboard.totalDonated / 1000) * 100,
+                  100,
+                )}%`,
+              }}
+            />
+          </div>
+        </div>
+      </section>
+      {/* Donations */}
+
+      <section className="dashboard__section">
+        <h2>💸 Recent Donations</h2>
+
+        {dashboard.recentDonations.length === 0 ? (
+          <p>No donations yet.</p>
+        ) : (
+          <div className="dashboard-donations-grid">
+            {dashboard.recentDonations.map((donation) => (
+              <div key={donation._id} className="donation-card">
+                <div className="donation-icon">💖</div>
+
+                <div className="donation-info">
+                  <h4>
+                    {donation.donationType === "project"
+                      ? "🎯 Project Donation"
+                      : "💙 General Donation"}
+                  </h4>
+
+                  <p>{donation.project?.title || "Community Support Fund"}</p>
+
+                  <small>{donation.project?.category || "General"}</small>
+                </div>
+
+                <div className="donation-amount">€{donation.amount}</div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
-      {/* Quick Actions */}
+      {/* Votes */}
+
+      <section className="dashboard__section">
+        <h2>🗳 Recent Votes</h2>
+
+        {dashboard.recentVotes.length === 0 ? (
+          <p>No votes yet.</p>
+        ) : (
+          <ul>
+            {dashboard.recentVotes.map((vote) => (
+              <li key={vote._id} className="dashboard__vote-item">
+                ✅ {vote.project?.title} ({vote.creditsUsed} credits)
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {/* Actions */}
+
       <section className="dashboard__section dashboard__actions">
         <h2>🚀 Quick Actions</h2>
+
         <div className="dashboard__buttons">
           <Link
-            to="/donate-now"
+            to="/dashboard/donate"
             className="dashboard__btn dashboard__btn--primary"
           >
-            💖 Donate Again
+            💖 Make Donation
           </Link>
+
           <Link
             to="/dashboard/projects"
             className="dashboard__btn dashboard__btn--success"
           >
-            🗳️ Vote Projects
+            🗳 Vote Projects
           </Link>
+
           <Link
-            to="/dashboard/chat"
+            to="/dashboard/news-feed"
             className="dashboard__btn dashboard__btn--secondary"
           >
-            💬 Join Chat
+            📰 Community News
           </Link>
+
           <Link
-            to="/dashboard/donations"
+            to="/dashboard/profile"
             className="dashboard__btn dashboard__btn--secondary"
           >
-            Donations
+            👤 My Profile
           </Link>
         </div>
       </section>

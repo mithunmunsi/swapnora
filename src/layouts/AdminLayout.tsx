@@ -1,14 +1,14 @@
-import React from "react";
-import AdminSidebar from "../components/admin/AdminSidebar"; // Import the sidebar
-import { Outlet } from "react-router-dom"; // To render nested routes
-
-const AdminLayout: React.FC = () => {
+import AdminSidebar from "../components/admin/AdminSidebar";
+import { Outlet } from "react-router-dom";
+import "./AdminLayout.css";
+const AdminLayout = () => {
   return (
     <div className="admin-layout">
-      <AdminSidebar /> {/* Sidebar on the left */}
-      <div className="admin-content">
-        <Outlet /> {/* This will render the content based on the route */}
-      </div>
+      <AdminSidebar />
+
+      <main className="admin-main">
+        <Outlet />
+      </main>
     </div>
   );
 };

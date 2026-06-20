@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { User } from "../../types/User";
+import { User } from "../../types/user";
 
 const mockUser: User = {
   id: "123",

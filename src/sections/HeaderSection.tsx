@@ -1,4 +1,4 @@
-// src/components/HeaderSection.tsx
+// src/sections/HeaderSection.tsx
 
 const HeaderSection = () => {
   return (

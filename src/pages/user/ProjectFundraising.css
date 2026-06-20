@@ -1,0 +1,154 @@
+.project-fundraising {
+  max-width: 1100px;
+
+  margin: 0 auto;
+
+  padding: 2rem;
+}
+
+.fundraising-card {
+  background: white;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.fundraising-image {
+  width: 100%;
+
+  height: 420px;
+
+  object-fit: cover;
+}
+
+.fundraising-content {
+  padding: 2rem;
+}
+
+.fundraising-category {
+  display: inline-block;
+
+  background: #eff6ff;
+
+  color: #2563eb;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
+  margin-bottom: 1rem;
+}
+
+.fundraising-content h1 {
+  margin-bottom: 1rem;
+
+  color: #111827;
+}
+
+.fundraising-content p {
+  color: #4b5563;
+
+  line-height: 1.7;
+}
+
+.fundraising-stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+
+  margin: 2rem 0;
+}
+
+.fundraising-stats div {
+  background: #f9fafb;
+
+  padding: 1rem;
+
+  border-radius: 12px;
+
+  text-align: center;
+}
+
+.fundraising-stats strong {
+  display: block;
+
+  font-size: 1.5rem;
+
+  color: #111827;
+
+  margin-bottom: 5px;
+}
+
+.fundraising-stats span {
+  color: #6b7280;
+}
+
+.fundraising-progress {
+  margin-bottom: 2rem;
+}
+
+.progress-bar {
+  height: 12px;
+
+  background: #e5e7eb;
+
+  border-radius: 999px;
+
+  overflow: hidden;
+
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+
+  background: #10b981;
+}
+
+.fundraising-progress span {
+  font-weight: 600;
+
+  color: #10b981;
+}
+
+.fundraising-info {
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  border-radius: 12px;
+
+  padding: 1rem;
+}
+
+.fundraising-loading,
+.fundraising-error {
+  text-align: center;
+
+  padding: 3rem;
+
+  font-size: 1.2rem;
+}
+
+.fundraising-error {
+  color: #dc2626;
+}
+
+@media (max-width: 768px) {
+  .fundraising-image {
+    height: 250px;
+  }
+
+  .fundraising-stats {
+    grid-template-columns: 1fr;
+  }
+}

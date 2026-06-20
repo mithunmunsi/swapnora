@@ -1,0 +1,82 @@
+.project-links {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.details-btn {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 180px;
+
+  padding: 10px 20px;
+
+  text-decoration: none;
+
+  border-radius: 8px;
+
+  background: #4c8414;
+  color: white;
+
+  font-weight: 600;
+}
+
+.details-btn:hover {
+  background: #05980c;
+}
+
+.vote-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.vote-actions button {
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: #068119;
+
+  color: white;
+
+  font-weight: 600;
+}
+
+.vote-actions button:hover {
+  background: #1a8105;
+}
+.project-status-label {
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.project-status-label.selected {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.project-status-label.funding {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.project-status-label.completed {
+  background: #dcfce7;
+  color: #166534;
+}

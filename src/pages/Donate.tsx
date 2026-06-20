@@ -1,5 +1,5 @@
-import DonationForm from "../components/DonationForm";
-import HeaderSection from "../components/HeaderSection";
+import DonationForm from "../components/donation/DonationForm";
+import HeaderSection from "../sections/HeaderSection";
 import ProgressBar from "../components/ProgressBar";
 import StorySection from "../components/StorySection";
 

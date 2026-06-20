@@ -1,0 +1,98 @@
+.completed-projects {
+  padding: 24px;
+}
+
+.completed-projects h1 {
+  margin-bottom: 10px;
+}
+
+.completed-projects p {
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.completed-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+  gap: 24px;
+}
+
+.completed-card {
+  background: white;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+  transition: transform 0.2s;
+}
+
+.completed-card:hover {
+  transform: translateY(-4px);
+}
+
+.completed-image {
+  width: 100%;
+
+  height: 220px;
+
+  object-fit: cover;
+}
+
+.completed-content {
+  padding: 20px;
+}
+
+.completed-badge {
+  display: inline-block;
+
+  background: #dcfce7;
+
+  color: #166534;
+
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 0.85rem;
+
+  font-weight: 600;
+
+  margin-bottom: 12px;
+}
+
+.completed-content h2 {
+  margin-bottom: 10px;
+}
+
+.completed-content p {
+  color: #4b5563;
+
+  line-height: 1.6;
+}
+
+.completed-stats {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin: 16px 0;
+
+  font-size: 0.9rem;
+}
+
+.completed-funding {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding-top: 12px;
+
+  border-top: 1px solid #e5e7eb;
+}

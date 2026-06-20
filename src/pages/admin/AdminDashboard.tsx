@@ -1,46 +1,86 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./AdminDashboard.css";
+import api from "../../services/api";
+
+import StatsCard from "../../components/admin/StatsCard";
+
+interface AdminStats {
+  totalUsers: number;
+  totalProjects: number;
+  totalDonations: number;
+  totalVotes: number;
+  totalFundsRaised: number;
+}
 
 const AdminDashboard = () => {
+  const [stats, setStats] = useState<AdminStats | null>(null);
+
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await api.get("/admin/stats");
+
+        setStats(response.data.stats);
+      } catch (error) {
+        console.error(error);
+
+        setError("Failed to load admin statistics");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  if (loading) {
+    return <div className="admin-loading">Loading statistics...</div>;
+  }
+
+  if (error) {
+    return <div className="admin-error">{error}</div>;
+  }
+
   return (
-    <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow-md rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">🛠️ Admin Dashboard</h1>
+    <div className="admin-dashboard">
+      <div className="admin-dashboard-header">
+        <div>
+          <h1>Dashboard Overview</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Manage Projects */}
-        <div className="bg-blue-100 p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-2">📋 Manage Projects</h2>
-          <p>Approve, edit, or archive charity projects.</p>
-          <Link to="/admin/projects" className="text-blue-700 underline">
-            Go to Projects
-          </Link>
+          <p>Monitor projects, donations and users.</p>
         </div>
+      </div>
 
-        {/* Manage Users */}
-        <div className="bg-green-100 p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-2">👥 Manage Users</h2>
-          <p>View registered users and donation stats.</p>
-          <Link to="/admin/users" className="text-green-700 underline">
-            Go to Users
-          </Link>
-        </div>
+      <div className="stats-grid">
+        <StatsCard
+          title="Total Users"
+          value={stats?.totalUsers || 0}
+          icon="👥"
+        />
 
-        {/* Transactions */}
-        <div className="bg-yellow-100 p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-2">💳 Transactions</h2>
-          <p>Monitor recent donations and payouts.</p>
-          <Link to="/admin/transactions" className="text-yellow-700 underline">
-            View Transactions
-          </Link>
-        </div>
+        <StatsCard
+          title="Projects"
+          value={stats?.totalProjects || 0}
+          icon="📋"
+        />
 
-        {/* Settings (optional) */}
-        <div className="bg-red-100 p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-2">⚙️ Settings</h2>
-          <p>Configure platform preferences.</p>
-          <Link to="/admin/settings" className="text-red-700 underline">
-            Platform Settings
-          </Link>
-        </div>
+        <StatsCard
+          title="Donations"
+          value={stats?.totalDonations || 0}
+          icon="💳"
+        />
+
+        <StatsCard title="Votes" value={stats?.totalVotes || 0} icon="🗳️" />
+
+        <StatsCard
+          title="Funds Raised"
+          value={`€${stats?.totalFundsRaised || 0}`}
+          icon="💰"
+        />
       </div>
     </div>
   );

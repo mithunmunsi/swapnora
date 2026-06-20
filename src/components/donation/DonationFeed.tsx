@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion"; // 🧡 Animation library
-import recentDonation from "../assets/personal-donate-stat.png";
-import PayPalButton from "./PayPalButton";
+import recentDonation from "../../assets/personal-donate-stat.png";
+// import PayPalButton from "../PayPalButton";
 
 type Donation = {
   id: string;
@@ -15,11 +15,13 @@ const DonationFeed = () => {
 
   useEffect(() => {
     const fetchDonations = async () => {
-      setDonations([
-        { id: "1", donor: "Alice", amount: 100, date: "2025-04-25 10:00" },
-        { id: "2", donor: "Bob", amount: 25, date: "2025-04-25 09:30" },
-        { id: "3", donor: "Charlie", amount: 50, date: "2025-04-24 16:45" },
-      ]);
+      try {
+        const response = await fetch("http://localhost:8000/api/donations");
+        const data = await response.json();
+        setDonations(data);
+      } catch (error) {
+        console.error("Error fetching donations:", error);
+      }
     };
 
     fetchDonations();
@@ -73,7 +75,7 @@ const DonationFeed = () => {
                   </li>
                 ))}
               </ul>
-              <PayPalButton />
+              {/* <PayPalButton /> */}
 
               <motion.button
                 className="donation-button"
