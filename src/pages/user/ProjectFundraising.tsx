@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProjectDonationForm from "../../components/donation/ProjectDonationForm";
 import api from "../../services/api";
@@ -24,11 +24,7 @@ const ProjectFundraising = () => {
 
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    fetchProject();
-  }, [projectId]);
-
-  const fetchProject = async () => {
+  const fetchProject = useCallback(async () => {
     try {
       const response = await api.get(`/projects/${projectId}`);
 
@@ -38,7 +34,11 @@ const ProjectFundraising = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [projectId]);
+
+  useEffect(() => {
+    fetchProject();
+  }, [fetchProject]);
 
   if (loading) {
     return <div className="fundraising-loading">Loading project...</div>;

@@ -6,6 +6,8 @@ import { useSearchParams } from "react-router-dom";
 import { useRef } from "react";
 import { useCallback } from "react";
 import socket from "../../socket";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 interface ConversationParticipant {
   _id: string;
@@ -40,9 +42,87 @@ interface Message {
   };
 }
 
+const MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024;
+const ALLOWED_ATTACHMENT_TYPES = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "image/webp",
+  "application/pdf",
+  "text/plain",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+]);
+
+const PrivateAttachment = ({
+  message,
+  onPreview,
+}: {
+  message: Message;
+  onPreview: (url: string) => void;
+}) => {
+  const [objectUrl, setObjectUrl] = useState("");
+  const [loadFailed, setLoadFailed] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    let createdUrl = "";
+
+    api
+      .get(`/messages/attachments/${message._id}`, {
+        responseType: "blob",
+      })
+      .then((response) => {
+        if (!active) return;
+
+        createdUrl = URL.createObjectURL(response.data);
+        setObjectUrl(createdUrl);
+      })
+      .catch((error) => {
+        console.error(error);
+        if (active) setLoadFailed(true);
+      });
+
+    return () => {
+      active = false;
+      if (createdUrl) URL.revokeObjectURL(createdUrl);
+    };
+  }, [message._id]);
+
+  if (loadFailed) {
+    return <span className="attachment-error">Attachment unavailable</span>;
+  }
+
+  if (!objectUrl) {
+    return <span className="attachment-loading">Loading attachment...</span>;
+  }
+
+  if (message.attachmentType?.startsWith("image/")) {
+    return (
+      <img
+        src={objectUrl}
+        alt={message.attachmentName || "Message attachment"}
+        className="chat-image"
+        onClick={() => onPreview(objectUrl)}
+      />
+    );
+  }
+
+  return (
+    <a
+      href={objectUrl}
+      download={message.attachmentName || "attachment"}
+      className="chat-attachment-link"
+    >
+      📎 {message.attachmentName || "Download attachment"}
+    </a>
+  );
+};
+
 const Messages = () => {
   const { user } = useAuth();
-  const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [selectedConversation, setSelectedConversation] =
     useState<Conversation | null>(null);
@@ -74,6 +154,9 @@ const Messages = () => {
   const [previewImage, setPreviewImage] = useState<string | null>(null);
 
   const [uploadProgress, setUploadProgress] = useState(0);
+  const [sending, setSending] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
@@ -109,7 +192,10 @@ const Messages = () => {
         );
 
         if (otherUser) {
-          socket.emit("check_online_status", otherUser._id);
+          socket.emit("check_online_status", {
+            targetUserId: otherUser._id,
+            conversationId: conversation._id,
+          });
         }
 
         await fetchConversations();
@@ -244,8 +330,11 @@ const Messages = () => {
   useEffect(() => {
     if (!otherUser) return;
 
-    socket.emit("check_online_status", otherUser._id);
-  }, [otherUser]);
+    socket.emit("check_online_status", {
+      targetUserId: otherUser._id,
+      conversationId: selectedConversation?._id,
+    });
+  }, [otherUser, selectedConversation?._id]);
 
   useEffect(() => {
     fetchConversations();
@@ -271,6 +360,9 @@ const Messages = () => {
     if (!selectedConversation) {
       return;
     }
+
+    setSending(true);
+    setUploadProgress(0);
 
     try {
       const receiver = selectedConversation.participants.find(
@@ -304,9 +396,43 @@ const Messages = () => {
       setMessages((prev) => [...prev, response.data.message]);
 
       setNewMessage("");
+      setSelectedFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
     } catch (error) {
       console.error(error);
+      toast.error(
+        axios.isAxiosError(error)
+          ? error.response?.data?.message ||
+              "Message could not be sent. Please try again."
+          : "Message could not be sent. Please try again.",
+      );
+    } finally {
+      setUploadProgress(0);
+      setSending(false);
     }
+  };
+
+  const selectFile = (file: File | null) => {
+    if (!file) {
+      setSelectedFile(null);
+      return;
+    }
+
+    if (!ALLOWED_ATTACHMENT_TYPES.has(file.type)) {
+      toast.error("That file type is not supported.");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    if (file.size > MAX_ATTACHMENT_BYTES) {
+      toast.error("Attachments must be 10 MB or smaller.");
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      return;
+    }
+
+    setSelectedFile(file);
   };
 
   if (loading) {
@@ -433,7 +559,9 @@ const Messages = () => {
                       ? "You"
                       : `${message.sender.firstName}`}
                   </div>
-                  <div className="message-content">{message.content}</div>
+                  {message.content && (
+                    <div className="message-content">{message.content}</div>
+                  )}
                   {message.sender._id === user?._id && (
                     <div className="read-status">
                       {message.deliveryStatus === "read"
@@ -451,26 +579,12 @@ const Messages = () => {
                     })}
                   </div>
 
-                  {message.attachmentType?.startsWith("image/") && (
-                    <img
-                      src={`${SERVER_URL}${message.attachmentUrl}`}
-                      alt={message.attachmentName}
-                      className="chat-image"
-                      onClick={() =>
-                        setPreviewImage(`${SERVER_URL}${message.attachmentUrl}`)
-                      }
+                  {message.attachmentName && message.attachmentType && (
+                    <PrivateAttachment
+                      message={message}
+                      onPreview={setPreviewImage}
                     />
                   )}
-                  {message.attachmentUrl &&
-                    !message.attachmentType?.startsWith("image/") && (
-                      <a
-                        href={`http://localhost:8000${message.attachmentUrl}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        📎 {message.attachmentName}
-                      </a>
-                    )}
                 </div>
               ))}
 
@@ -491,7 +605,7 @@ const Messages = () => {
 
                   socket.emit("typing", {
                     receiverId: receiver?._id,
-                    senderName: `${user?.firstName}`,
+                    conversationId: selectedConversation._id,
                   });
 
                   if (typingTimeoutRef.current) {
@@ -501,6 +615,7 @@ const Messages = () => {
                   typingTimeoutRef.current = setTimeout(() => {
                     socket.emit("stop_typing", {
                       receiverId: receiver?._id,
+                      conversationId: selectedConversation._id,
                     });
                   }, 1000);
                 }}
@@ -516,12 +631,50 @@ const Messages = () => {
                 <div className="upload-progress">{uploadProgress}%</div>
               )}
 
+              <div
+                className={`dropzone ${isDragging ? "dragging" : ""}`}
+                onDragEnter={(event) => {
+                  event.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragOver={(event) => {
+                  event.preventDefault();
+                  setIsDragging(true);
+                }}
+                onDragLeave={(event) => {
+                  event.preventDefault();
+                  setIsDragging(false);
+                }}
+                onDrop={(event) => {
+                  event.preventDefault();
+                  setIsDragging(false);
+                  selectFile(event.dataTransfer.files?.[0] || null);
+                }}
+                onClick={() => fileInputRef.current?.click()}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    fileInputRef.current?.click();
+                  }
+                }}
+              >
+                {selectedFile
+                  ? selectedFile.name
+                  : "Drop a file here or click to choose"}
+              </div>
+
               <input
+                ref={fileInputRef}
                 type="file"
-                onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+                className="attachment-input"
+                accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.txt,.doc,.docx,.xls,.xlsx"
+                onChange={(e) => selectFile(e.target.files?.[0] || null)}
               />
 
-              <button onClick={sendMessage}>Send</button>
+              <button onClick={sendMessage} disabled={sending}>
+                {sending ? "Sending..." : "Send"}
+              </button>
             </div>
           </>
         )}

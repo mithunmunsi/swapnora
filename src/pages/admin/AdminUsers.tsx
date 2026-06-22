@@ -4,7 +4,7 @@ import api from "../../services/api";
 
 import "./AdminUsers.css";
 
-import { User } from "../../types/user";
+import { User } from "../../types/User";
 
 const AdminUsers = () => {
   const [users, setUsers] = useState<User[]>([]);

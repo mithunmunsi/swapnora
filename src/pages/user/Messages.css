@@ -291,12 +291,54 @@
   margin-bottom: 10px;
   font-size: 14px;
 }
+.chat-image {
+  display: block;
+  max-width: min(320px, 100%);
+  max-height: 280px;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: zoom-in;
+  object-fit: cover;
+}
+
+.chat-attachment-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: inherit;
+  font-weight: 600;
+}
+
+.attachment-loading,
+.attachment-error,
+.selected-file {
+  font-size: 12px;
+}
+
+.attachment-error {
+  color: #dc2626;
+}
+
+.chat-input button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
 .dropzone {
   border: 2px dashed #ccc;
   padding: 12px;
   text-align: center;
   border-radius: 8px;
-  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  max-width: 220px;
+}
+
+.dropzone.dragging {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.attachment-input {
+  display: none;
 }
 @media (max-width: 768px) {
   .messages-page {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import api from "../services/api";
 
@@ -36,11 +36,7 @@ const ProjectDetails = () => {
 
   const isDashboard = location.pathname.startsWith("/dashboard");
 
-  useEffect(() => {
-    fetchProject();
-  }, [id]);
-
-  const fetchProject = async () => {
+  const fetchProject = useCallback(async () => {
     try {
       const projectRes = await api.get(`/projects/${id}`);
 
@@ -56,7 +52,11 @@ const ProjectDetails = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id, isDashboard]);
+
+  useEffect(() => {
+    fetchProject();
+  }, [fetchProject]);
 
   if (loading) {
     return <div className="project-details-loading">Loading project...</div>;

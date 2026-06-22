@@ -1,4 +1,4 @@
-import socket from "../../socket";
+import socket, { connectSocket } from "../../socket";
 import { useAuth } from "../../hooks/useAuth";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../../components/user/Sidebar";
@@ -9,14 +9,18 @@ import { toast } from "react-toastify";
 const DashboardLayout = () => {
   const location = useLocation();
   const showRightbar = location.pathname === "/dashboard/news-feed";
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user?._id) {
-      socket.emit("join", user._id);
-    }
-  }, [user]);
+    if (!token) return;
+
+    connectSocket(token);
+
+    return () => {
+      socket.disconnect();
+    };
+  }, [token]);
 
   useEffect(() => {
     const handleNewMessage = (message: {

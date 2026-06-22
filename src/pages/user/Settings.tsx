@@ -1,51 +1,46 @@
-import { useState, useEffect } from "react";
-import { User } from "../../types/user";
-
-const mockUser: User = {
-  id: "123",
-  name: "John Doe",
-  email: "john@example.com",
-  profilePic: "/profile.png",
-};
+import { FormEvent, useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import api from "../../services/api";
+import { useAuth } from "../../hooks/useAuth";
 
 const Settings = () => {
-  const [user, setUser] = useState<User | null>(null);
+  const { user, refreshUser } = useAuth();
+  const [saving, setSaving] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    profilePic: "",
-    password: "",
-    confirmPassword: "",
+    firstName: "",
+    lastName: "",
+    bio: "",
+    location: "",
+    website: "",
   });
 
   useEffect(() => {
-    // Simulate fetching user data
-    setUser(mockUser);
+    if (!user) return;
+
     setFormData({
-      name: mockUser.name,
-      email: mockUser.email,
-      profilePic: mockUser.profilePic,
-      password: "",
-      confirmPassword: "",
+      firstName: user.firstName || "",
+      lastName: user.lastName || "",
+      bio: user.bio || "",
+      location: user.location || "",
+      website: user.website || "",
     });
-  }, []);
+  }, [user]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    setSaving(true);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (formData.password && formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
+    try {
+      await api.put("/users/profile", formData);
+      await refreshUser();
+      toast.success("Settings saved");
+    } catch (error) {
+      console.error(error);
+      toast.error("Unable to save settings");
+    } finally {
+      setSaving(false);
     }
-
-    // Submit update (e.g., API call)
-    console.log("Updated user info:", formData);
   };
-
-  if (!user) return <div>Loading...</div>;
 
   return (
     <main className="settings">
@@ -54,95 +49,96 @@ const Settings = () => {
 
         <form className="settings-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="name" className="form-label">
-              Name
+            <label htmlFor="firstName" className="form-label">
+              First name
             </label>
             <input
-              id="name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
+              id="firstName"
               className="form-input"
+              value={formData.firstName}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  firstName: event.target.value,
+                }))
+              }
+              required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="email" className="form-label">
-              Email
+            <label htmlFor="lastName" className="form-label">
+              Last name
             </label>
             <input
-              id="email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
+              id="lastName"
               className="form-input"
+              value={formData.lastName}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  lastName: event.target.value,
+                }))
+              }
+              required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="profilePic" className="form-label">
-              Profile Picture URL
+            <label htmlFor="bio" className="form-label">
+              Bio
             </label>
             <input
-              id="profilePic"
-              name="profilePic"
-              type="text"
-              value={formData.profilePic}
-              onChange={handleChange}
+              id="bio"
               className="form-input"
+              value={formData.bio}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  bio: event.target.value,
+                }))
+              }
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="password" className="form-label">
-              Current password
+            <label htmlFor="location" className="form-label">
+              Location
             </label>
             <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
+              id="location"
               className="form-input"
-              placeholder="********"
+              value={formData.location}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  location: event.target.value,
+                }))
+              }
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="password" className="form-label">
-              New Password
+            <label htmlFor="website" className="form-label">
+              Website
             </label>
             <input
-              id="password"
-              name="password"
-              type="password"
-              value={formData.password}
-              onChange={handleChange}
+              id="website"
+              type="url"
               className="form-input"
-              placeholder="********"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="confirmPassword" className="form-label">
-              Confirm Password
-            </label>
-            <input
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="********"
+              value={formData.website}
+              onChange={(event) =>
+                setFormData((current) => ({
+                  ...current,
+                  website: event.target.value,
+                }))
+              }
             />
           </div>
 
           <div className="form-actions">
-            <button type="submit" className="btn-primary">
-              Save Changes
+            <button type="submit" className="btn-primary" disabled={saving}>
+              {saving ? "Saving..." : "Save Changes"}
             </button>
           </div>
         </form>
