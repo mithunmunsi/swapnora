@@ -268,6 +268,36 @@
   text-align: right;
 }
 
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 9999;
+}
+
+.lightbox-image {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 12px;
+  cursor: zoom-out;
+}
+
+.upload-progress {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.dropzone {
+  border: 2px dashed #ccc;
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
 @media (max-width: 768px) {
   .messages-page {
     flex-direction: column;

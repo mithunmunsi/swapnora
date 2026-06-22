@@ -134,12 +134,12 @@ const Sidebar = () => {
       <div className="sidebar-brand">
         <Link to="/" className="sidebar-brand-link">
           <img
-            src="/favicon.png"
-            alt="Swapnora Logo"
+            src="/cursor.png"
+            alt="Manus Foundation Logo"
             className="sidebar-brand-logo"
           />
 
-          <h1 className="sidebar-brand-name">Swapnora</h1>
+          <h1 className="sidebar-brand-name">Manus Foundation</h1>
         </Link>
       </div>
 

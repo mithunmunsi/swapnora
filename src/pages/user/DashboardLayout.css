@@ -1,17 +1,17 @@
 .dashboard {
   display: flex;
-
   min-height: 100dvh;
-
   background: #f8fafc;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* LEFT SIDEBAR SPACE */
 
 .dashboard-sidebar {
-  width: 280px;
-  min-width: 280px;
-  padding: 20px;
+  width: 320px;
+  min-width: 320px;
+
   flex-shrink: 0;
 }
 
@@ -53,6 +53,9 @@
   top: 20px;
 }
 
+.dashboard-error {
+  padding: 20px 50px;
+}
 /* TABLET */
 
 @media (max-width: 1200px) {

@@ -18,7 +18,7 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
   overflow-x: hidden;
-  background-color: #c0c0c0;
+  background-color: #d7d7d7;
 }
 
 .heading-primary {
@@ -206,7 +206,9 @@ body {
 }
 .brands-link {
   height: 80px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
 }
 
 .brands-link:hover {
@@ -949,7 +951,7 @@ body {
 }
 
 .donation-form select,
-.donation-form input[type=number] {
+.donation-form input[type="number"] {
   padding: 10px;
   font-size: 15px;
   border: 1px solid #ccc;
@@ -2130,7 +2132,13 @@ body {
   color: transparent;
   text-transform: uppercase;
   display: inline-block;
-  background-image: -webkit-gradient(linear, left top, right top, from(#196b0c), to(#28b487));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#196b0c),
+    to(#28b487)
+  );
   background-image: linear-gradient(to right, #1d6e11, #28b487);
   -webkit-background-clip: text;
 }
@@ -2246,7 +2254,13 @@ body {
   color: transparent;
   text-transform: uppercase;
   display: inline-block;
-  background-image: -webkit-gradient(linear, left top, right top, from(#7dd56f), to(#28b487));
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#7dd56f),
+    to(#28b487)
+  );
   background-image: linear-gradient(to right, #1d6e11, #28b487);
   -webkit-background-clip: text;
 }

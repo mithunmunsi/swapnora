@@ -27,7 +27,11 @@ interface Message {
   createdAt: string;
   isRead: boolean;
   deliveryStatus?: "sent" | "delivered" | "read";
+  attachmentUrl?: string;
 
+  attachmentName?: string;
+
+  attachmentType?: string;
   sender: {
     _id: string;
     firstName: string;
@@ -38,7 +42,7 @@ interface Message {
 
 const Messages = () => {
   const { user } = useAuth();
-
+  const SERVER_URL = import.meta.env.VITE_SERVER_URL;
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [selectedConversation, setSelectedConversation] =
     useState<Conversation | null>(null);
@@ -64,6 +68,12 @@ const Messages = () => {
   const otherUser = selectedConversation?.participants.find(
     (participant) => participant._id !== user?._id,
   );
+
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({
@@ -254,25 +264,42 @@ const Messages = () => {
   }, [conversationId, conversations, selectedConversation, openConversation]);
 
   const sendMessage = async () => {
-    if (!newMessage.trim() || !selectedConversation) return;
+    if (!newMessage.trim() && !selectedFile) {
+      return;
+    }
+
+    if (!selectedConversation) {
+      return;
+    }
 
     try {
       const receiver = selectedConversation.participants.find(
         (participant) => participant._id !== user?._id,
       );
 
-      const response = await api.post("/messages/send", {
-        conversationId: selectedConversation._id,
-        receiverId: receiver?._id,
-        content: newMessage,
+      const formData = new FormData();
+
+      formData.append("conversationId", selectedConversation._id);
+
+      formData.append("receiverId", receiver?._id || "");
+
+      formData.append("content", newMessage);
+
+      if (selectedFile) {
+        formData.append("file", selectedFile);
+      }
+
+      const response = await api.post("/messages/send", formData, {
+        onUploadProgress: (progressEvent) => {
+          const percent = Math.round(
+            (progressEvent.loaded * 100) / (progressEvent.total || 1),
+          );
+
+          setUploadProgress(percent);
+        },
       });
 
-      // console.log("SENT MESSAGE ID:", response.data.message._id);
-      console.log(
-        "API RESPONSE STATUS:",
-
-        response.data.message.deliveryStatus,
-      );
+      setUploadProgress(0);
 
       setMessages((prev) => [...prev, response.data.message]);
 
@@ -281,16 +308,6 @@ const Messages = () => {
       console.error(error);
     }
   };
-
-  /* 
-  console.log("user", user);
-
-  console.log(
-    "selectedConversation",
-
-    selectedConversation,
-  );
-  console.log("otherUser", otherUser); */
 
   if (loading) {
     return <div className="messages-loading">Loading conversations...</div>;
@@ -433,6 +450,27 @@ const Messages = () => {
                       minute: "2-digit",
                     })}
                   </div>
+
+                  {message.attachmentType?.startsWith("image/") && (
+                    <img
+                      src={`${SERVER_URL}${message.attachmentUrl}`}
+                      alt={message.attachmentName}
+                      className="chat-image"
+                      onClick={() =>
+                        setPreviewImage(`${SERVER_URL}${message.attachmentUrl}`)
+                      }
+                    />
+                  )}
+                  {message.attachmentUrl &&
+                    !message.attachmentType?.startsWith("image/") && (
+                      <a
+                        href={`http://localhost:8000${message.attachmentUrl}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        📎 {message.attachmentName}
+                      </a>
+                    )}
                 </div>
               ))}
 
@@ -474,11 +512,25 @@ const Messages = () => {
                 }}
               />
 
+              {uploadProgress > 0 && uploadProgress < 100 && (
+                <div className="upload-progress">{uploadProgress}%</div>
+              )}
+
+              <input
+                type="file"
+                onChange={(e) => setSelectedFile(e.target.files?.[0] || null)}
+              />
+
               <button onClick={sendMessage}>Send</button>
             </div>
           </>
         )}
       </section>
+      {previewImage && (
+        <div className="image-lightbox" onClick={() => setPreviewImage(null)}>
+          <img src={previewImage} alt="Preview" className="lightbox-image" />
+        </div>
+      )}
     </div>
   );
 };
